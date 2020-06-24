@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
 
     private PlayerInput m_PlayerInput;
-    private InputAction m_LookAction;
+    // private InputAction m_LookAction;
     private InputAction m_MoveAction;
     private InputAction m_FireAction;
     public float motorPower;
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
             // m_PlayerInput = GetComponent<PlayerInput>();
             m_PlayerInput = (PlayerInput)gameObject.GetComponent("PlayerInput");
             m_FireAction = m_PlayerInput.actions["fire"];
-            m_LookAction = m_PlayerInput.actions["look"];
+            // m_LookAction = m_PlayerInput.actions["look"];
             m_MoveAction = m_PlayerInput.actions["move"];
         }
     }
@@ -32,17 +32,19 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Rigidbody2D shipRBody = GameObject.FindGameObjectWithTag("Ship")
-            .GetComponent<Rigidbody2D>();
         var movement = m_MoveAction.ReadValue<Vector2>();
         if (movement != Vector2.zero)
         {
+            // Get ship's RigidBody
+            Rigidbody2D shipRBody = GameObject.FindGameObjectWithTag("Ship")
+            .GetComponent<Rigidbody2D>();
+
+            // Normalize movement, so it cannot cause too much force
+            movement.Normalize();
             Vector2 forceToAdd = movement * motorPower;
-            Vector2 pos = transform.position;
-            forceToAdd.Normalize();
             Debug.Log(forceToAdd);
             shipRBody.AddForce(forceToAdd);
-            rbody.AddForce(forceToAdd);
+            // rbody.AddForce(forceToAdd);
             transform.position = Vector2.zero;
         }
     }
@@ -53,11 +55,6 @@ public class PlayerController : MonoBehaviour
         {
             if (m_FireAction.triggered)
                 Debug.Log("Ammutaan");
-
-            var look = m_LookAction.ReadValue<Vector2>();
-            if (look != Vector2.zero)
-                Debug.Log("Look:" + look);
-            /* Update transform from move&look... */
         }
     }
 
@@ -79,13 +76,6 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Juostaan");
     }
-
-
-    public void look()
-    {
-        // Debug.Log("Katsoo");
-    }
-
 
 
     public void Shoot()
