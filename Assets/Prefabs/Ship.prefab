@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1488230726091742611}
   - component: {fileID: 1488230726091742608}
   - component: {fileID: 1488230726091742609}
+  - component: {fileID: 9204233889671856818}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Ship
@@ -120,3 +121,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &9204233889671856818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488230726091742614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6dcd9ab00380a3684fe13e5cfa1232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

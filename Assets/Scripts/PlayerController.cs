@@ -15,11 +15,15 @@ public class PlayerController : MonoBehaviour
     public float shipSize;  // Affects to the postion of flames
     Rigidbody2D rbody;
     SpriteRenderer sr;
+    bool checkpointResetRequested;
+    GameObject ship;
 
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        checkpointResetRequested = false;
+        ship = GameObject.FindGameObjectWithTag("Ship");
         if (m_PlayerInput == null)
         {
             m_PlayerInput = (PlayerInput)gameObject.GetComponent("PlayerInput");
@@ -29,8 +33,19 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public void OnPlayerJoined()
+    {
+        Debug.Log("Liitytty");
+    }
+
+
     void FixedUpdate()
     {
+        if (checkpointResetRequested)
+        {
+            ship.GetComponent<ShipController>().ResetToLastCheckpoint();
+            checkpointResetRequested = false;
+        }
         var movement = GetNormalizedMovement();
         if (movement != Vector2.zero)
         {
@@ -39,10 +54,8 @@ public class PlayerController : MonoBehaviour
                 .GetComponent<Rigidbody2D>();
 
             Vector2 forceToAdd = movement * motorPower;
-            Debug.Log(forceToAdd);
+            // Debug.Log(forceToAdd);
             shipRBody.AddForce(forceToAdd);
-            // rbody.AddForce(forceToAdd);
-            // transform.position = Vector2.zero;
         }
     }
 
@@ -71,7 +84,7 @@ public class PlayerController : MonoBehaviour
         // Position around ship
         Rigidbody2D shipRBody = GameObject.FindGameObjectWithTag("Ship")
             .GetComponent<Rigidbody2D>();
-        GameObject ship = GameObject.FindGameObjectWithTag("Ship");
+
         Vector3 offset = (Vector3)GetNormalizedMovement() * shipSize;
         transform.position = ship.transform.position - offset;
 
@@ -96,17 +109,10 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void Move(string str)
+    public void OnFire()
     {
-        Debug.Log("Liikutaan" + str);
-        Vector2 pos = gameObject.transform.position;
-        // transform.position = pos + new Vector2(1, 1);
-    }
-
-
-    public void run(string teksti)
-    {
-        Debug.Log("Juostaan");
+        Debug.Log("Checkpoint palautus");
+        checkpointResetRequested = true;
     }
 
 

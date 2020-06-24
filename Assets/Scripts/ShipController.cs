@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlusController : MonoBehaviour
+public class ShipController : MonoBehaviour
 {
     Rigidbody2D rbody;
-    // Start is called before the first frame update
+    Vector2 lastCheckpoint;
+
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
+        lastCheckpoint = Vector2.zero;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -21,5 +24,12 @@ public class AlusController : MonoBehaviour
     void FixedUpdate()
     {
 
+    }
+
+
+    public void ResetToLastCheckpoint()
+    {
+        transform.position = lastCheckpoint;
+        rbody.velocity = Vector2.zero;
     }
 }
