@@ -32,4 +32,10 @@ public class ShipController : MonoBehaviour
         transform.position = lastCheckpoint;
         rbody.velocity = Vector2.zero;
     }
+
+
+    public void SetLastCheckpoint(Vector2 cp)
+    {
+        lastCheckpoint = cp;
+    }
 }
