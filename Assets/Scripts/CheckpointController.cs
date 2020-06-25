@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
+    public Transform resetPoint;
 
-    public Vector2 resetCoords;
+
     // Start is called before the first frame update
     void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
     {
 
     }
@@ -21,8 +16,20 @@ public class CheckpointController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.tag != "Ship")
+            return;
         var ship = GameObject.FindGameObjectWithTag("Ship");
-        ship.GetComponent<ShipController>().SetLastCheckpoint(resetCoords);
-        // Set Last checkpoint for the ship
+        ship.GetComponent<ShipController>().SetLastCheckpoint(resetPoint.position);
+    }
+
+
+    // Debug
+
+    /// Draw an attack area for a weapon in editor
+    void OnDrawGizmosSelected()
+    {
+        if (resetPoint == null)
+            return;
+        Gizmos.DrawWireSphere(resetPoint.position, 0.25f);
     }
 }

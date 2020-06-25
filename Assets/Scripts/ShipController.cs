@@ -36,6 +36,7 @@ public class ShipController : MonoBehaviour
 
     public void SetLastCheckpoint(Vector2 cp)
     {
+        Debug.Log("Uusi lastChekpoint: " + cp);
         lastCheckpoint = cp;
     }
 }

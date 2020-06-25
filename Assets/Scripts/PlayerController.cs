@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire()
     {
-        Debug.Log("Checkpoint palautus");
+        // Debug.Log("Checkpoint palautus");
         checkpointResetRequested = true;
     }
 
