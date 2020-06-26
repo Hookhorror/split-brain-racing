@@ -11,6 +11,7 @@ public class ShipController : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
         lastCheckpoint = Vector2.zero;
+        InvokeRepeating("DubugOncePerSec", 1, 1);
     }
 
 
@@ -38,5 +39,11 @@ public class ShipController : MonoBehaviour
     {
         Debug.Log("Uusi lastChekpoint: " + cp);
         lastCheckpoint = cp;
+    }
+
+
+    void DubugOncePerSec()
+    {
+        Debug.Log(rbody.velocity);
     }
 }
