@@ -13,17 +13,21 @@ public class PlayerController : MonoBehaviour
     private InputAction m_FireAction;
     public float motorPower;
     public float shipSize;  // Affects to the postion of flames
-    Rigidbody2D rbody;
+    Rigidbody2D playerRBody;
     SpriteRenderer sr;
     bool checkpointResetRequested;
     GameObject ship;
+    Rigidbody2D shipRBody;
+
 
     void Start()
     {
-        rbody = GetComponent<Rigidbody2D>();
+        playerRBody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         checkpointResetRequested = false;
         ship = GameObject.FindGameObjectWithTag("Ship");
+        shipRBody = ship.GetComponent<Rigidbody2D>();
+
         if (m_PlayerInput == null)
         {
             m_PlayerInput = (PlayerInput)gameObject.GetComponent("PlayerInput");
@@ -39,85 +43,75 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void FixedUpdate()
-    {
-        if (checkpointResetRequested)
-        {
-            ship.GetComponent<ShipController>().ResetToLastCheckpoint();
-            checkpointResetRequested = false;
+    void FixedUpdate()shipRBodyt<ShipController>().ResetToLastCheckpoint();
+    checkpointResetRequested = false;
         }
-        var movement = GetNormalizedMovement();
-        if (movement != Vector2.zero)
-        {
-            // Get ship's RigidBody
-            Rigidbody2D shipRBody = GameObject.FindGameObjectWithTag("Ship")
-                .GetComponent<Rigidbody2D>();
-
-            Vector2 forceToAdd = movement * motorPower;
-            // Debug.Log(forceToAdd);
-            shipRBody.AddForce(forceToAdd);
-        }
+var movement = GetNormalizedMovement();
+if (movement != Vector2.zero)
+{
+    Vector2 forceToAdd = movement * motorPower;
+    // Debug.Log(forceToAdd);
+    shipRBody.AddForce(forceToAdd);
+}
     }
+
 
     // Update is called once per frame
     void Update()
+{
     {
-        {
-            FlameControl();
-        }
+        FlameControl();
+    }
+}
+
+
+/// Controls the visibiliti, postition and angel if the player's flame
+void FlameControl()
+{
+    var movement = GetNormalizedMovement();
+    if (movement == Vector2.zero)
+    {
+        sr.enabled = false;
+        return;
     }
 
-
-    /// Controls the visibiliti, postition and angel if the player's flame
-    void FlameControl()
-    {
-        var movement = GetNormalizedMovement();
-        if (movement == Vector2.zero)
-        {
-            sr.enabled = false;
-            return;
-        }
-
-        sr.enabled = true;
+    sr.enabled = true;
 
 
-        // Position around ship
-        Rigidbody2D shipRBody = GameObject.FindGameObjectWithTag("Ship")
-            .GetComponent<Rigidbody2D>();
+    // Position around ship
+    Vector3 offset = (Vector3)GetNormalizedMovement() * shipSize;
+    transform.position = ship.transform.position - offset;
 
-        Vector3 offset = (Vector3)GetNormalizedMovement() * shipSize;
-        transform.position = ship.transform.position - offset;
-
-        // Angle
-        var angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 180f;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-    }
+    // Angle
+    var angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 180f;
+    transform.rotation = Quaternion.Euler(0, 0, angle);
+}
 
 
-    public void OnMove()
-    {
-    }
+public void OnMove()
+{
+}
 
 
-    /// Returns player's stick position as normalized Vector2 or Vector2.zero
-    Vector2 GetNormalizedMovement()
-    {
-        var movement = m_MoveAction.ReadValue<Vector2>();
-        if (movement != Vector2.zero)
-            movement.Normalize();
-        return movement;
-    }
+/// Returns player's stick position as normalized Vector2 or Vector2.zero
+Vector2 GetNormalizedMovement()
+{
+    var movement = m_MoveAction.ReadValue<Vector2>();
+    if (movement != Vector2.zero)
+        movement.Normalize();
+    return movement;
+}
 
 
-    public void OnFire()
-    {
-        // Debug.Log("Checkpoint palautus");
-        checkpointResetRequested = true;
-    }
+public void OnFire()
+{
+    // Debug.Log("Checkpoint palautus");
+    checkpointResetRequested = true;
+}
 
 
-    public void Shoot()
-    {
-        // Debug.Log("Ampuu");
-    }
+public void Shoot()
+{
+    // Debug.Log("Ampuu");
+}
 }
