@@ -79,7 +79,11 @@ public class TrackController : MonoBehaviour
         float finalTime = cpRunTimes[cpRunTimes.Length - 1];
         if (finalTime < recordTime.GetFinalTime())
         {
+            // New record time
             Debug.Log("NEW RECORD " + cpRunTimes[cpRunTimes.Length - 1]);
+            RecordData rd = new RecordData("RoopeAnkka", cpRunTimes);
+            string json = JsonUtility.ToJson(rd);
+            Debug.Log(json);
         }
     }
 
