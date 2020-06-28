@@ -7,21 +7,17 @@ using UnityEngine;
 public class TrackController : MonoBehaviour
 {
 
-    // public checkpoints;
     private float startTime;
-    // private float[] checkpointRecordTimes = new float[] { 3, 4, 6 };
-    private float[] checkpointRunTimes;
-    private int checkpointsReached = 0;
-    private bool trackComplete = false;
-
-    public RecordData recordData;
-
+    private float[] cpRunTimes;
+    private int cpReached = 0;
+    public RecordData recordTime;
     public GameObject[] checkpoints;
+
 
     void Start()
     {
         LoadRecords();
-        var rec = recordData.GetCheckpointTimes();
+        var rec = recordTime.GetCheckpointTimes();
         if (checkpoints.Length != rec.Length)
             Debug.LogError("Number of checkpoints and split times differ");
         Debug.Log(checkpoints.Length);
@@ -37,24 +33,23 @@ public class TrackController : MonoBehaviour
     private void LoadRecords()
     {
         string fileName = @"./trackrecords.json";
-        Debug.Log(File.Exists(fileName) ? "File exists." : "File does not exist.");
+        if (!File.Exists(fileName))
+        {
+            Debug.LogWarning("Record file does not exist");
+            return;
+        }
 
-        FileStream fs = File.OpenRead("trackrecords.json");
+        FileStream fs = File.OpenRead(fileName);
         var ser = new DataContractJsonSerializer(typeof(RecordData));
 
-        recordData = (RecordData)ser.ReadObject(fs);
-
-        Debug.Log(recordData.GetName());
-        float[] recordTi = recordData.GetCheckpointTimes();
-        Debug.Log(recordTi[1]);
+        recordTime = (RecordData)ser.ReadObject(fs);
     }
 
 
     private void ResetToStart()
     {
         startTime = Time.time;
-        checkpointRunTimes = new float[checkpoints.Length];
-        trackComplete = false;
+        cpRunTimes = new float[checkpoints.Length];
         for (int i = 0; i < checkpoints.Length; i++)
         {
             checkpoints[i].GetComponent<CheckpointController>().ResetStatus();
@@ -63,24 +58,35 @@ public class TrackController : MonoBehaviour
 
 
     /// Takes a split time and send it to UI
-    public void SplitTime(float splitTime)
+    public void SplitTime(float splitTimeRecord)
     {
-        float splitT = TakeTime() - splitTime;
-        checkpointRunTimes[checkpointsReached] = splitT;
-        Debug.Log("Split time: " + splitT);
-        checkpointsReached++;
-        if (checkpointsReached == checkpoints.Length)
+        float splitTime = TakeTime() - splitTimeRecord;
+        cpRunTimes[cpReached] = splitTime;
+        Debug.Log("Split time: " + splitTime);
+        cpReached++;
+        if (cpReached == checkpoints.Length)
         {
-            trackComplete = true;
+            TrackComplete();
             Debug.Log("Rata suoritettu");
         }
         // TODO: Send to UI
     }
 
 
+    private void TrackComplete()
+    {
+        // Check if final time is better than the record time
+        float finalTime = cpRunTimes[cpRunTimes.Length - 1];
+        if (finalTime < recordTime.GetFinalTime())
+        {
+            Debug.Log("NEW RECORD " + cpRunTimes[cpRunTimes.Length - 1]);
+        }
+    }
+
+
     void Update()
     {
-        float time = TakeTime();
+
     }
 
 
