@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class UiController : MonoBehaviour
 {
-    private void Start()
-    {
-        UpdateCurrentTime("Jepulis");
-        UpdateSplitTime("Jepsukka");
-    }
     public void UpdateCurrentTime(string time)
     {
         UiManager.instance.currentTime.text = time;
