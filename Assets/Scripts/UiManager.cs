@@ -3,10 +3,10 @@ using TMPro;
 
 public class UiManager : MonoBehaviour
 {
-    public static UiManager uiManager;
+    public static UiManager instance;
     private void Awake()
     {
-        uiManager = this;
+        instance = this;
     }
 
     public TextMeshProUGUI currentTime;
