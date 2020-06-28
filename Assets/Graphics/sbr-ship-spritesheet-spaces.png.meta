@@ -1,55 +1,52 @@
 fileFormatVersion: 2
-guid: cd2e3c3281ee966f1bafb94872068220
+guid: d3b3180b7f02802429b139f31d20e2df
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -743813236075553535
-    second: sbr-ship-spritesheet_0
+      213: -6136029378444575707
+    second: sbr-ship-spritesheet-spaces_0
   - first:
-      213: 8438216921658482684
-    second: sbr-ship-spritesheet_0
+      213: -8822241553700763056
+    second: sbr-ship-spritesheet-spaces_1
   - first:
-      213: -7715775467039204180
-    second: sbr-ship-spritesheet_1
+      213: -7001682432194922355
+    second: sbr-ship-spritesheet-spaces_2
   - first:
-      213: -3285025829319477472
-    second: sbr-ship-spritesheet_2
+      213: 5227269734343585502
+    second: sbr-ship-spritesheet-spaces_3
   - first:
-      213: 6096054494630969833
-    second: sbr-ship-spritesheet_3
+      213: -5047641621170154598
+    second: sbr-ship-spritesheet-spaces_4
   - first:
-      213: -8819135696616162371
-    second: sbr-ship-spritesheet_4
+      213: 6964922148121043895
+    second: sbr-ship-spritesheet-spaces_5
   - first:
-      213: -2544076063614361895
-    second: sbr-ship-spritesheet_5
+      213: 2200568332914900795
+    second: sbr-ship-spritesheet-spaces_6
   - first:
-      213: 6097086953482692987
-    second: sbr-ship-spritesheet_6
+      213: -9113522684783678739
+    second: sbr-ship-spritesheet-spaces_7
   - first:
-      213: 8616770427720726851
-    second: sbr-ship-spritesheet_7
+      213: -2469387586771429302
+    second: sbr-ship-spritesheet-spaces_8
   - first:
-      213: 5493880239321840360
-    second: sbr-ship-spritesheet_8
+      213: -3059820291539973813
+    second: sbr-ship-spritesheet-spaces_9
   - first:
-      213: 2552107775598635106
-    second: sbr-ship-spritesheet_9
+      213: 6466693965937575914
+    second: sbr-ship-spritesheet-spaces_10
   - first:
-      213: -3887331336593970419
-    second: sbr-ship-spritesheet_10
+      213: -6719440220581441289
+    second: sbr-ship-spritesheet-spaces_11
   - first:
-      213: 784167620968165691
-    second: sbr-ship-spritesheet_11
+      213: 6670945850810350446
+    second: sbr-ship-spritesheet-spaces_12
   - first:
-      213: -1971336196368687318
-    second: sbr-ship-spritesheet_12
+      213: 3062861459482399384
+    second: sbr-ship-spritesheet-spaces_13
   - first:
-      213: -3643951262100166423
-    second: sbr-ship-spritesheet_13
-  - first:
-      213: 6243831524951334127
-    second: sbr-ship-spritesheet_14
+      213: -3787013980559080111
+    second: sbr-ship-spritesheet-spaces_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -135,11 +132,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_0
+      name: sbr-ship-spritesheet-spaces_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 824
+        x: 39
+        y: 780
         width: 256
         height: 256
       alignment: 0
@@ -149,18 +146,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cffd42925919a1570800000000000000
-      internalID: 8438216921658482684
+      spriteID: 52c33765ac178daa0800000000000000
+      internalID: -6136029378444575707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_1
+      name: sbr-ship-spritesheet-spaces_1
       rect:
         serializedVersion: 2
-        x: 256
-        y: 824
+        x: 341
+        y: 787
         width: 256
         height: 256
       alignment: 0
@@ -170,39 +167,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cac5478b71f0ce490800000000000000
-      internalID: -7715775467039204180
+      spriteID: 05ac9f49c0a119580800000000000000
+      internalID: -8822241553700763056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_2
+      name: sbr-ship-spritesheet-spaces_2
       rect:
         serializedVersion: 2
-        x: 512
-        y: 824
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 027fd6db96e3962d0800000000000000
-      internalID: -3285025829319477472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sbr-ship-spritesheet_3
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 824
+        x: 653
+        y: 789
         width: 256
         height: 256
       alignment: 0
@@ -212,18 +188,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e107ebb349899450800000000000000
-      internalID: 6096054494630969833
+      spriteID: d88bde6ace605de90800000000000000
+      internalID: -7001682432194922355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_4
+      name: sbr-ship-spritesheet-spaces_3
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 824
+        x: 957
+        y: 800
         width: 256
         height: 256
       alignment: 0
@@ -233,18 +209,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbbf9394fc22c9580800000000000000
-      internalID: -8819135696616162371
+      spriteID: ede23bcc02efa8840800000000000000
+      internalID: 5227269734343585502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_5
+      name: sbr-ship-spritesheet-spaces_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 568
+        x: 1262
+        y: 805
         width: 256
         height: 256
       alignment: 0
@@ -254,18 +230,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9de11ba9c40a1bcd0800000000000000
-      internalID: -2544076063614361895
+      spriteID: a931da860bc23f9b0800000000000000
+      internalID: -5047641621170154598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_6
+      name: sbr-ship-spritesheet-spaces_5
       rect:
         serializedVersion: 2
-        x: 256
-        y: 568
+        x: 39
+        y: 500
         width: 256
         height: 256
       alignment: 0
@@ -275,18 +251,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b79210bc7443d9450800000000000000
-      internalID: 6097086953482692987
+      spriteID: 7b3610fbacf58a060800000000000000
+      internalID: 6964922148121043895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_7
+      name: sbr-ship-spritesheet-spaces_6
       rect:
         serializedVersion: 2
-        x: 512
-        y: 568
+        x: 341
+        y: 507
         width: 256
         height: 256
       alignment: 0
@@ -296,18 +272,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3497267ec0be49770800000000000000
-      internalID: 8616770427720726851
+      spriteID: b3fbd5b5d3df98e10800000000000000
+      internalID: 2200568332914900795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_8
+      name: sbr-ship-spritesheet-spaces_7
       rect:
         serializedVersion: 2
-        x: 768
-        y: 568
+        x: 653
+        y: 509
         width: 256
         height: 256
       alignment: 0
@@ -317,18 +293,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8eaf05748fe2e3c40800000000000000
-      internalID: 5493880239321840360
+      spriteID: dea21095763468180800000000000000
+      internalID: -9113522684783678739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_9
+      name: sbr-ship-spritesheet-spaces_8
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 568
+        x: 957
+        y: 520
         width: 256
         height: 256
       alignment: 0
@@ -338,18 +314,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 268a1111088ea6320800000000000000
-      internalID: 2552107775598635106
+      spriteID: a48dabdb219fabdd0800000000000000
+      internalID: -2469387586771429302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_10
+      name: sbr-ship-spritesheet-spaces_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 312
+        x: 1262
+        y: 525
         width: 256
         height: 256
       alignment: 0
@@ -359,18 +335,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0b621ecebc6d0ac0800000000000000
-      internalID: -3887331336593970419
+      spriteID: b494a3e08a55985d0800000000000000
+      internalID: -3059820291539973813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_11
+      name: sbr-ship-spritesheet-spaces_10
       rect:
         serializedVersion: 2
-        x: 256
-        y: 312
+        x: 39
+        y: 229
         width: 256
         height: 256
       alignment: 0
@@ -380,18 +356,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b31bb2ceb4ce1ea00800000000000000
-      internalID: 784167620968165691
+      spriteID: ae70fd666ef4eb950800000000000000
+      internalID: 6466693965937575914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_12
+      name: sbr-ship-spritesheet-spaces_11
       rect:
         serializedVersion: 2
-        x: 512
-        y: 312
+        x: 341
+        y: 236
         width: 256
         height: 256
       alignment: 0
@@ -401,18 +377,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2f139a8c2864a4e0800000000000000
-      internalID: -1971336196368687318
+      spriteID: 7f055c278b0cfb2a0800000000000000
+      internalID: -6719440220581441289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_13
+      name: sbr-ship-spritesheet-spaces_12
       rect:
         serializedVersion: 2
-        x: 768
-        y: 312
+        x: 653
+        y: 238
         width: 256
         height: 256
       alignment: 0
@@ -422,19 +398,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e8eea332a51e6dc0800000000000000
-      internalID: -3643951262100166423
+      spriteID: e6bba6938e5f39c50800000000000000
+      internalID: 6670945850810350446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sbr-ship-spritesheet_14
+      name: sbr-ship-spritesheet-spaces_13
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 312
-        width: 256
+        x: 957
+        y: 249
+        width: 259
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -443,8 +419,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fec1c12d0bb86a650800000000000000
-      internalID: 6243831524951334127
+      spriteID: 892dea80548718a20800000000000000
+      internalID: 3062861459482399384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sbr-ship-spritesheet-spaces_14
+      rect:
+        serializedVersion: 2
+        x: 1265
+        y: 258
+        width: 249
+        height: 252
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 155865169d2d17bc0800000000000000
+      internalID: -3787013980559080111
       vertices: []
       indices: 
       edges: []
