@@ -5,21 +5,48 @@ using UnityEngine;
 public class CheckpointController : MonoBehaviour
 {
     public Transform resetPoint;
+    private bool isUsed = false;
+    private float splitTime;
+    private GameObject ship;
+    private GameObject track;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        ship = GameObject.FindGameObjectWithTag("Ship");
+        track = GameObject.FindGameObjectWithTag("Track");
     }
 
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag != "Ship")
+        // Each checkpoint can be used only once
+        if (isUsed)
             return;
-        var ship = GameObject.FindGameObjectWithTag("Ship");
+
+        if (!col.gameObject.CompareTag("Ship"))
+            return;
+
+        // Set a new resetpoint for the ship
         ship.GetComponent<ShipController>().SetLastCheckpoint(resetPoint.position);
+        // Inform the track that this checkpoint has been reached
+        track.GetComponent<TrackController>().SplitTime(splitTime);
+
+        isUsed = true;
+    }
+
+
+    public void SetTime(float time)
+    {
+        splitTime = time;
+        Debug.Log("Checkpoints split time" + splitTime);
+    }
+
+
+    public void ResetStatus()
+    {
+        isUsed = false;
     }
 
 

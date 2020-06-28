@@ -11,7 +11,7 @@ public class ShipController : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
         lastCheckpoint = Vector2.zero;
-        InvokeRepeating("DubugOncePerSec", 1, 1);
+        // InvokeRepeating("DubugOncePerSec", 1, 1);
     }
 
 
