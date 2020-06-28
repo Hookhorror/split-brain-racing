@@ -263,6 +263,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint_3
       objectReference: {fileID: 0}
+    - target: {fileID: 3939743163263512459, guid: 6e9f8d534ea92c92789a7210630e62f8,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e9f8d534ea92c92789a7210630e62f8, type: 3}
 --- !u!1001 &826253533
@@ -332,6 +338,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint_2
       objectReference: {fileID: 0}
+    - target: {fileID: 3939743163263512459, guid: 6e9f8d534ea92c92789a7210630e62f8,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e9f8d534ea92c92789a7210630e62f8, type: 3}
 --- !u!1 &1011209615
@@ -343,9 +355,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1011209616}
+  - component: {fileID: 1011209617}
   m_Layer: 0
-  m_Name: Checkpoints
-  m_TagString: Untagged
+  m_Name: CheckpointManager
+  m_TagString: CheckpointManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -367,6 +380,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1011209617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011209615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e71deea041aaf37bbdec5772ad0e707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1070636099
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +404,7 @@ GameObject:
   - component: {fileID: 1070636100}
   m_Layer: 0
   m_Name: TrackManager
-  m_TagString: Untagged
+  m_TagString: Track
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,9 +421,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593b4998886f10f35a61584e8a77dba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldTime: 0
-  silverTime: 0
-  bronzeTime: 0
+  goldTime: 5
+  silverTime: 6
+  bronzeTime: 7
+  checkpoints:
+  - {fileID: 1203496969}
+  - {fileID: 2109742349}
+  - {fileID: 1531548410}
 --- !u!4 &1070636101
 Transform:
   m_ObjectHideFlags: 0
@@ -418,6 +447,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3939743163263512448, guid: 6e9f8d534ea92c92789a7210630e62f8,
     type: 3}
   m_PrefabInstance: {fileID: 787891645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1203496969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3939743163263512459, guid: 6e9f8d534ea92c92789a7210630e62f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3939743164586546012}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1268781912
 PrefabInstance:
@@ -557,6 +592,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1a480909d3f698e587c2e561cc46aeb, type: 3}
+--- !u!1 &1531548410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3939743163263512459, guid: 6e9f8d534ea92c92789a7210630e62f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 787891645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1609317596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3939743163263512448, guid: 6e9f8d534ea92c92789a7210630e62f8,
@@ -715,6 +756,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2109742349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3939743163263512459, guid: 6e9f8d534ea92c92789a7210630e62f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 826253533}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1829056140537892177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -851,6 +898,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3939743163263512459, guid: 6e9f8d534ea92c92789a7210630e62f8,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e9f8d534ea92c92789a7210630e62f8, type: 3}
 --- !u!1001 &6344242570126255566
