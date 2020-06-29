@@ -87,6 +87,14 @@ public class TrackController : MonoBehaviour
     }
 
 
+    public void ShipCrashed()
+    {
+        DisablePlayerControls();
+        CancelInvoke();
+        Invoke("RecoverFromCrash", 1);
+    }
+
+
     public void ResetToStart()
     {
         Debug.Log("Reset ASKED");
@@ -94,10 +102,18 @@ public class TrackController : MonoBehaviour
         if (!(gameState == GameState.racing ||
                gameState == GameState.finished))
             return;
-
+        CancelInvoke();
         Debug.Log("RESETING TO START");
         DisablePlayerControls();
         SetUpRunStuff();
+    }
+
+
+    private void RecoverFromCrash()
+    {
+
+        EnablePlayerControls();
+        ship.GetComponent<ShipController>().RequestReset();
     }
 
 

@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
             sr.enabled = false;
             return;
         }
+        Debug.Log("piirretaan liekki");
 
         sr.enabled = true;
 
@@ -114,7 +115,7 @@ public class PlayerController : MonoBehaviour
         transform.position = ship.transform.position - offset;
 
         // Angle
-        var angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 180f;
+        var angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg + 90f;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 

@@ -7,6 +7,7 @@ public class ShipController : MonoBehaviour
     Rigidbody2D rbody;
     Vector2 lastCheckpoint;
     Vector2 startPoint;
+    private bool resetRequested = false;
 
     void Start()
     {
@@ -25,7 +26,8 @@ public class ShipController : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        if (resetRequested)
+            ResetToLastCheckpoint();
     }
 
 
@@ -33,6 +35,7 @@ public class ShipController : MonoBehaviour
     {
         transform.position = lastCheckpoint;
         rbody.velocity = Vector2.zero;
+        resetRequested = false;
     }
 
 
@@ -40,6 +43,12 @@ public class ShipController : MonoBehaviour
     {
         // Debug.Log("Uusi lastChekpoint: " + cp);
         lastCheckpoint = cp;
+    }
+
+
+    public void RequestReset()
+    {
+        resetRequested = true;
     }
 
 
