@@ -412,6 +412,11 @@ MonoBehaviour:
   - {fileID: 1203496969}
   - {fileID: 2109742349}
   - {fileID: 1531548410}
+  playerColors:
+  - {r: 1, g: 0, b: 0, a: 0.39607844}
+  - {r: 0, g: 0, b: 1, a: 0.4117647}
+  - {r: 0, g: 1, b: 0.25, a: 0}
+  - {r: 1, g: 0.9783717, b: 0, a: 0}
 --- !u!4 &1070636101
 Transform:
   m_ObjectHideFlags: 0

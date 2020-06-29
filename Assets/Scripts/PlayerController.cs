@@ -22,10 +22,18 @@ public class PlayerController : MonoBehaviour
     private bool resetIsEnabled = false;
 
 
+    void Awake()
+    {
+        // This is in Awake. In start is was not selected quick enough
+        // for trackController's calls to SetColor().
+        sr = GetComponent<SpriteRenderer>();
+    }
+
+
     void Start()
     {
         playerRBody = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        // sr = GetComponent<SpriteRenderer>();
         resetToCpRequested = false;
         ship = GameObject.FindGameObjectWithTag("Ship");
         shipRBody = ship.GetComponent<Rigidbody2D>();
@@ -74,6 +82,13 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public void SetColor(Color color)
+    {
+        sr.color = color;
+        Debug.Log("color set " + color);
+    }
+
+
     public void EnableControls()
     {
         moveIsEnabled = true;
@@ -106,7 +121,6 @@ public class PlayerController : MonoBehaviour
             sr.enabled = false;
             return;
         }
-        Debug.Log("piirretaan liekki");
 
         sr.enabled = true;
 

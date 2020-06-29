@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -19,6 +20,7 @@ public class TrackController : MonoBehaviour
     PlayerInputManager pim;
     GameObject[] players;
     GameObject ship;
+    public Color[] playerColors;
 
 
     void Start()
@@ -167,6 +169,8 @@ public class TrackController : MonoBehaviour
             case GameState.waitingPlayers:
                 if (pim.playerCount == 2)
                 {
+                    // Invoke("SetPlayerColors", 2);
+                    SetPlayerColors();
                     gameState = GameState.countdown;
                     StartCountdown();
                 }
@@ -177,6 +181,20 @@ public class TrackController : MonoBehaviour
 
             default:
                 break;
+        }
+    }
+
+
+    private void SetPlayerColors()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log(playerColors.Length);
+        Debug.Log(players.Length);
+        int i = 0;
+        foreach (var p in players)
+        {
+            p.GetComponent<PlayerController>().SetColor(playerColors[i]);
+            i++;
         }
     }
 
@@ -198,7 +216,6 @@ public class TrackController : MonoBehaviour
     private void EnablePlayerControls()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log("Players found: " + players.Length);
         foreach (var p in players)
         {
             p.GetComponent<PlayerController>().EnableControls();
@@ -209,7 +226,6 @@ public class TrackController : MonoBehaviour
     private void DisablePlayerControls()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log("Players found: " + players.Length);
         foreach (var p in players)
         {
             p.GetComponent<PlayerController>().DisableControls();
