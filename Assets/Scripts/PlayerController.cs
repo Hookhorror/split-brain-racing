@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     bool checkpointResetRequested;
     GameObject ship;
     Rigidbody2D shipRBody;
+    private bool moveIsEnabled = false;
+    private bool resetIsEnabled = false;
+
 
     void Start()
     {
@@ -29,20 +32,19 @@ public class PlayerController : MonoBehaviour
         if (m_PlayerInput == null)
         {
             m_PlayerInput = (PlayerInput)gameObject.GetComponent("PlayerInput");
-            m_FireAction = m_PlayerInput.actions["fire"];
+            m_FireAction = m_PlayerInput.actions["ResetToCheckpoint"];
             m_MoveAction = m_PlayerInput.actions["move"];
         }
-    }
 
-
-    public void OnPlayerJoined()
-    {
-        Debug.Log("Liitytty");
+        // m_PlayerInput.enabled = false;
+        // m_PlayerInput.SwitchCurrentActionMap();
     }
 
 
     void FixedUpdate()
     {
+        if (!moveIsEnabled)
+            return;
         if (checkpointResetRequested)
         {
             ship.GetComponent<ShipController>().ResetToLastCheckpoint();
@@ -58,12 +60,24 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public void EnableControls()
+    {
+        moveIsEnabled = true;
+        resetIsEnabled = true;
+    }
+
+
+    public void DisableControls()
+    {
+        moveIsEnabled = false;
+        resetIsEnabled = false;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
-        {
-            FlameControl();
-        }
+        FlameControl();
     }
 
 
@@ -105,9 +119,19 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnFire()
+    public void OnResetToCheckpoint()
     {
+        if (!resetIsEnabled)
+            return;
         // Debug.Log("Checkpoint palautus");
+        checkpointResetRequested = true;
+    }
+
+
+    public void OnResetToStart()
+    {
+        if (!resetIsEnabled)
+            return;
         checkpointResetRequested = true;
     }
 

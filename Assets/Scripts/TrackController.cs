@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class TrackController : MonoBehaviour
 {
@@ -12,15 +14,21 @@ public class TrackController : MonoBehaviour
     private int cpReached = 0;
     public RecordData recordTime;
     public GameObject[] checkpoints;
+    private GameState gameState = GameState.waitingPlayers;
+    PlayerInputManager pim;
+    GameObject[] players;
+
 
 
     void Start()
     {
+        pim = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerInputManager>();
+
         LoadRecords();
         var rec = recordTime.GetCheckpointTimes();
         if (checkpoints.Length != rec.Length)
             Debug.LogError("Number of checkpoints and split times differ");
-        Debug.Log(checkpoints.Length);
+
         for (int i = 0; i < checkpoints.Length; i++)
         {
             checkpoints[i].GetComponent<CheckpointController>().
@@ -76,7 +84,9 @@ public class TrackController : MonoBehaviour
     private void TrackComplete()
     {
         // Check if final time is better than the record time
+        gameState = GameState.finished;
         float finalTime = cpRunTimes[cpRunTimes.Length - 1];
+        DisablePlayerControls();
         if (finalTime < recordTime.GetFinalTime())
         {
             // New record time
@@ -90,7 +100,23 @@ public class TrackController : MonoBehaviour
 
     void Update()
     {
+        switch (gameState)
+        {
+            case GameState.waitingPlayers:
+                if (pim.playerCount == 2)
+                {
+                    gameState = GameState.countdown;
+                    Debug.Log("Starting countdown");
+                }
+                break;
+            case GameState.countdown:
+                StartCountdown();
+                gameState = GameState.racing;
+                break;
 
+            default:
+                break;
+        }
     }
 
 
@@ -98,6 +124,51 @@ public class TrackController : MonoBehaviour
     {
         float time = Time.time - startTime;
         return time;
+    }
+
+
+    private void StartCountdown()
+    {
+        Invoke("EnablePlayerControls", 2);
+        Debug.Log("Coundtown began");
+    }
+
+
+    private void EnablePlayerControls()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log("Players found: " + players.Length);
+        foreach (var p in players)
+        {
+            p.GetComponent<PlayerController>().EnableControls();
+        }
+    }
+
+
+    private void DisablePlayerControls()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log("Players found: " + players.Length);
+        foreach (var p in players)
+        {
+            p.GetComponent<PlayerController>().DisableControls();
+        }
+    }
+
+
+    private void Debugaa()
+    {
+        var pim = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerInputManager>();
+        Debug.Log("PLAYERS: " + pim.playerCount);
+    }
+
+
+    enum GameState
+    {
+        waitingPlayers,
+        countdown,
+        racing,
+        finished
     }
 
 }

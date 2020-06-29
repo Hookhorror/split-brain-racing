@@ -14,9 +14,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "ResetToCheckpoint",
                     "type": "Button",
                     "id": "67aa1a5d-2916-4712-aaed-6ce60e79e6b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ResetToStart",
+                    "type": "Button",
+                    "id": "aa2a44a3-b6cf-41d1-91c9-0275182d8fd8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -48,11 +56,11 @@
                 {
                     "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "ResetToCheckpoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -63,7 +71,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Fire",
+                    "action": "ResetToCheckpoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "15fa3a0c-9ff3-4e34-a0e9-8dc4fa9efb7a",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ResetToStart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
