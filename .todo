@@ -3,11 +3,20 @@
     <note priority="veryhigh" time="1593172172" done="1593177245">
         Joku versio radasta
     </note>
+    <note priority="high" time="1593172225" done="1593436746">
+        Grafiikat alukselle
+    </note>
     <note priority="medium" time="1593172205" done="1593177214">
         Alkuvalikko
     </note>
-    <note priority="high" time="1593172225">
-        Grafiikat alukselle
+    <note priority="veryhigh" time="1593172240">
+        Grafiikka radalle
+    </note>
+    <note priority="veryhigh" time="1593436781">
+        Grafiikka maaliviivalle
+    </note>
+    <note priority="veryhigh" time="1593436796">
+        Grafiikka checkpointeille
     </note>
     <note priority="high" time="1593172502">
         Tutustu materiaaleihin
@@ -17,9 +26,6 @@
     </note>
     <note priority="high" time="1593430925">
         Laskuri lähtöön
-    </note>
-    <note priority="medium" time="1593172240">
-        Grafiikka radalle
     </note>
     <note priority="medium" time="1593177276">
         Blingiä alkuvalikkoon
