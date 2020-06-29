@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     public float shipSize;  // Affects to the postion of flames
     Rigidbody2D playerRBody;
     SpriteRenderer sr;
-    bool checkpointResetRequested;
+    bool resetToCpRequested;
+    bool resetToStartRequested;
     GameObject ship;
     Rigidbody2D shipRBody;
     private bool moveIsEnabled = false;
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRBody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        checkpointResetRequested = false;
+        resetToCpRequested = false;
         ship = GameObject.FindGameObjectWithTag("Ship");
         shipRBody = ship.GetComponent<Rigidbody2D>();
 
@@ -43,13 +44,26 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!moveIsEnabled)
-            return;
-        if (checkpointResetRequested)
+        if (resetToStartRequested)
+        {
+            // ship.GetComponent<ShipController>().ResetToLastCheckpoint();
+            resetToStartRequested = false;
+            resetToCpRequested = false;
+
+            // Ask trackControl to reset the track
+            GameObject.FindGameObjectWithTag("Track")
+                .GetComponent<TrackController>().ResetToStart();
+        }
+
+        if (resetIsEnabled && resetToCpRequested)
         {
             ship.GetComponent<ShipController>().ResetToLastCheckpoint();
-            checkpointResetRequested = false;
+            resetToCpRequested = false;
         }
+
+        if (!moveIsEnabled)
+            return;
+
         var movement = GetNormalizedMovement();
         if (movement != Vector2.zero)
         {
@@ -81,18 +95,19 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    /// Controls the visibiliti, postition and angel if the player's flame
+    /// Controls the visibility, postition and angel of the player's flame
     void FlameControl()
     {
         var movement = GetNormalizedMovement();
-        if (movement == Vector2.zero)
+
+        // Flame is not visible if player is not turning the stick
+        if (movement == Vector2.zero || !moveIsEnabled)
         {
             sr.enabled = false;
             return;
         }
 
         sr.enabled = true;
-
 
         // Position around ship
         Vector3 offset = (Vector3)GetNormalizedMovement() * shipSize;
@@ -124,15 +139,15 @@ public class PlayerController : MonoBehaviour
         if (!resetIsEnabled)
             return;
         // Debug.Log("Checkpoint palautus");
-        checkpointResetRequested = true;
+        resetToCpRequested = true;
     }
 
 
     public void OnResetToStart()
     {
-        if (!resetIsEnabled)
-            return;
-        checkpointResetRequested = true;
+        // Reset to start is controlled by trackController.
+        resetToStartRequested = true;
+        Debug.Log("Reset to START REQUESTED " + resetToStartRequested);
     }
 
 

@@ -6,6 +6,7 @@ public class ShipController : MonoBehaviour
 {
     Rigidbody2D rbody;
     Vector2 lastCheckpoint;
+    Vector2 startPoint;
 
     void Start()
     {
@@ -37,13 +38,19 @@ public class ShipController : MonoBehaviour
 
     public void SetLastCheckpoint(Vector2 cp)
     {
-        Debug.Log("Uusi lastChekpoint: " + cp);
+        // Debug.Log("Uusi lastChekpoint: " + cp);
         lastCheckpoint = cp;
     }
 
 
     void DubugOncePerSec()
     {
-        Debug.Log(rbody.velocity);
+        // Debug.Log(rbody.velocity);
+    }
+
+
+    public void SetStartPoint()
+    {
+
     }
 }

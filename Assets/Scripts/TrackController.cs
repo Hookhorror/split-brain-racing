@@ -13,18 +13,30 @@ public class TrackController : MonoBehaviour
     private float[] cpRunTimes;
     private int cpReached = 0;
     public RecordData recordTime;
+    private Vector2 startPoint;
     public GameObject[] checkpoints;
     private GameState gameState = GameState.waitingPlayers;
     PlayerInputManager pim;
     GameObject[] players;
-
+    GameObject ship;
 
 
     void Start()
     {
-        pim = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerInputManager>();
+        SetUpTrackStuff();
+        SetUpRunStuff();
+    }
 
+
+    /// Track specific stuff that won't need change on resets
+    private void SetUpTrackStuff()
+    {
+        pim = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerInputManager>();
+        ship = GameObject.FindGameObjectWithTag("Ship");
+        startPoint = ship.transform.position;
         LoadRecords();
+
+        // Set record split times to checkpoints
         var rec = recordTime.GetCheckpointTimes();
         if (checkpoints.Length != rec.Length)
             Debug.LogError("Number of checkpoints and split times differ");
@@ -34,7 +46,28 @@ public class TrackController : MonoBehaviour
             checkpoints[i].GetComponent<CheckpointController>().
                 SetTime(rec[i]);
         }
-        ResetToStart();
+    }
+
+
+    /// Run specifig stuff that need to reset on track reset
+    private void SetUpRunStuff()
+    {
+        cpRunTimes = new float[checkpoints.Length];
+        cpReached = 0;
+
+        var shipCont = ship.GetComponent<ShipController>();
+        shipCont.SetLastCheckpoint(startPoint);
+        shipCont.ResetToLastCheckpoint();
+
+        // Reset checkpoints used status
+        for (int i = 0; i < checkpoints.Length; i++)
+        {
+            checkpoints[i].GetComponent<CheckpointController>().ResetStatus();
+        }
+
+        // DisablePlayerControls();
+        gameState = GameState.waitingPlayers;
+
     }
 
 
@@ -54,14 +87,26 @@ public class TrackController : MonoBehaviour
     }
 
 
-    private void ResetToStart()
+    public void ResetToStart()
+    {
+        Debug.Log("Reset ASKED");
+        // Reset can be asked only while racing or after goal
+        if (!(gameState == GameState.racing ||
+               gameState == GameState.finished))
+            return;
+
+        Debug.Log("RESETING TO START");
+        DisablePlayerControls();
+        SetUpRunStuff();
+    }
+
+
+    /// Run when countdown ends and racing begin
+    private void StartRacing()
     {
         startTime = Time.time;
-        cpRunTimes = new float[checkpoints.Length];
-        for (int i = 0; i < checkpoints.Length; i++)
-        {
-            checkpoints[i].GetComponent<CheckpointController>().ResetStatus();
-        }
+        EnablePlayerControls();
+        gameState = GameState.racing;
     }
 
 
@@ -69,6 +114,7 @@ public class TrackController : MonoBehaviour
     public void SplitTime(float splitTimeRecord)
     {
         float splitTime = TakeTime() - splitTimeRecord;
+        // Debug.Log("CHECKPOINTIT REACHED " + cpReached);
         cpRunTimes[cpReached] = splitTime;
         Debug.Log("Split time: " + splitTime);
         cpReached++;
@@ -106,12 +152,11 @@ public class TrackController : MonoBehaviour
                 if (pim.playerCount == 2)
                 {
                     gameState = GameState.countdown;
-                    Debug.Log("Starting countdown");
+                    StartCountdown();
                 }
                 break;
+
             case GameState.countdown:
-                StartCountdown();
-                gameState = GameState.racing;
                 break;
 
             default:
@@ -129,7 +174,7 @@ public class TrackController : MonoBehaviour
 
     private void StartCountdown()
     {
-        Invoke("EnablePlayerControls", 2);
+        Invoke("StartRacing", 2);
         Debug.Log("Coundtown began");
     }
 
