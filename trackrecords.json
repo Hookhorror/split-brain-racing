@@ -1,8 +1,4 @@
 {
-    "name": "AkuA",
-    "checkpointTimes": [
-        4,
-        5,
-        6
-    ]
+    "date": "UUSI",
+    "checkpoints": "{\n    \"Items\": [\n        0.8541088104248047,\n        1.7341089248657227,\n        2.4341087341308595\n    ]\n}"
 }

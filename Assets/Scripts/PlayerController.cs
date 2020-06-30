@@ -85,7 +85,6 @@ public class PlayerController : MonoBehaviour
     public void SetColor(Color color)
     {
         sr.color = color;
-        Debug.Log("color set " + color);
     }
 
 

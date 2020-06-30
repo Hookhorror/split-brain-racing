@@ -3,27 +3,22 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 
-[Serializable]
-[DataContract]
 public class RecordData
 {
-    [DataMember]
-    private string name = "";
+    private string date = "";
 
-    [DataMember]
     private float[] checkpointTimes = new float[0];
-
 
     public RecordData(string name, float[] checkpointTimes)
     {
-        this.name = name;
+        this.date = name;
         this.checkpointTimes = checkpointTimes;
     }
 
 
-    public string GetName()
+    public string GetDate()
     {
-        return name;
+        return date;
     }
 
 
@@ -36,6 +31,12 @@ public class RecordData
     public float GetFinalTime()
     {
         return checkpointTimes[checkpointTimes.Length - 1];
+    }
+
+
+    public void SetCheckpointTimes(float[] times)
+    {
+        this.checkpointTimes = times;
     }
 
 

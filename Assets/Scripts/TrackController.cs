@@ -21,6 +21,7 @@ public class TrackController : MonoBehaviour
     GameObject[] players;
     GameObject ship;
     public Color[] playerColors;
+    private string recordFile = @"./trackrecords.json";
 
 
     void Start()
@@ -36,7 +37,7 @@ public class TrackController : MonoBehaviour
         pim = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerInputManager>();
         ship = GameObject.FindGameObjectWithTag("Ship");
         startPoint = ship.transform.position;
-        LoadRecords();
+        GetCheckpointRecords();
 
         // Set record split times to checkpoints
         var rec = recordTime.GetCheckpointTimes();
@@ -73,19 +74,47 @@ public class TrackController : MonoBehaviour
     }
 
 
-    private void LoadRecords()
+    private string ReadFile()
     {
-        string fileName = @"./trackrecords.json";
-        if (!File.Exists(fileName))
+        if (!File.Exists(recordFile))
         {
             Debug.LogWarning("Record file does not exist");
-            return;
+            return null;
         }
 
-        FileStream fs = File.OpenRead(fileName);
-        var ser = new DataContractJsonSerializer(typeof(RecordData));
+        StreamReader reader = new StreamReader(recordFile);
+        string data = reader.ReadToEnd();
+        reader.Close();
+        return data;
+    }
 
-        recordTime = (RecordData)ser.ReadObject(fs);
+
+    private void GetCheckpointRecords()
+    {
+        string recordJSON = ReadFile();
+        if (recordJSON == null)
+        {
+            recordTime = new RecordData("MISSING", new float[] { 9, 9, 9 });
+            return;
+        }
+        Debug.Log(recordJSON);
+        Result r = JsonUtility.FromJson<Result>(recordJSON);
+
+        float[] cps = JsonHelper.FromJson<float>(r.checkpoints);
+
+        Debug.Log("CPS PITUUS " + cps.Length);
+
+        float[] cpsFloat = new float[cps.Length];
+        Debug.Log("cpsFloat PITUUS " + cpsFloat.Length);
+        for (int i = 0; i < cps.Length; i++)
+        {
+            Debug.Log(cps[i]);
+            cpsFloat[i] = (cps[i]);
+            Debug.Log(cpsFloat[i]);
+
+        }
+
+        recordTime = new RecordData(r.date, cpsFloat);
     }
 
 
@@ -103,11 +132,28 @@ public class TrackController : MonoBehaviour
         // Reset can be asked only while racing or after goal
         if (!(gameState == GameState.racing ||
                gameState == GameState.finished))
+        {
             return;
+        }
+
         CancelInvoke();
         Debug.Log("RESETING TO START");
         DisablePlayerControls();
         SetUpRunStuff();
+    }
+
+
+    private void SaveRecord()
+    {
+        Result r = new Result();
+        r.date = "UUSI";
+        r.checkpoints = JsonHelper.ToJson(cpRunTimes, true);
+        string resultJson = JsonUtility.ToJson(r, true);
+
+        StreamWriter writer = new StreamWriter(recordFile);
+        writer.Write(resultJson);
+        writer.Close();
+
     }
 
 
@@ -131,10 +177,11 @@ public class TrackController : MonoBehaviour
     /// Takes a split time and send it to UI
     public void SplitTime(float splitTimeRecord)
     {
-        float splitTime = TakeTime() - splitTimeRecord;
-        // Debug.Log("CHECKPOINTIT REACHED " + cpReached);
-        cpRunTimes[cpReached] = splitTime;
-        Debug.Log("Split time: " + splitTime);
+        float runTimeAtCp = RunStopWatch();
+        float differenceToRecord = runTimeAtCp - splitTimeRecord;
+        Debug.Log("Time: " + runTimeAtCp);
+        cpRunTimes[cpReached] = runTimeAtCp;
+        Debug.Log("Difference: " + differenceToRecord);
         cpReached++;
         if (cpReached == checkpoints.Length)
         {
@@ -149,15 +196,16 @@ public class TrackController : MonoBehaviour
     {
         // Check if final time is better than the record time
         gameState = GameState.finished;
-        float finalTime = cpRunTimes[cpRunTimes.Length - 1];
         DisablePlayerControls();
+
+        float finalTime = cpRunTimes[cpRunTimes.Length - 1];
         if (finalTime < recordTime.GetFinalTime())
         {
             // New record time
             Debug.Log("NEW RECORD " + cpRunTimes[cpRunTimes.Length - 1]);
-            RecordData rd = new RecordData("RoopeAnkka", cpRunTimes);
-            string json = JsonUtility.ToJson(rd);
-            Debug.Log(json);
+            SaveRecord();
+            recordTime.SetCheckpointTimes(cpRunTimes);
+
         }
     }
 
@@ -188,8 +236,6 @@ public class TrackController : MonoBehaviour
     private void SetPlayerColors()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log(playerColors.Length);
-        Debug.Log(players.Length);
         int i = 0;
         foreach (var p in players)
         {
@@ -199,10 +245,9 @@ public class TrackController : MonoBehaviour
     }
 
 
-    float TakeTime()
+    float RunStopWatch()
     {
-        float time = Time.time - startTime;
-        return time;
+        return Time.time - startTime;
     }
 
 
