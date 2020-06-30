@@ -153,7 +153,6 @@ public class TrackController : MonoBehaviour
         StreamWriter writer = new StreamWriter(recordFile);
         writer.Write(resultJson);
         writer.Close();
-
     }
 
 
@@ -183,6 +182,7 @@ public class TrackController : MonoBehaviour
         cpRunTimes[cpReached] = runTimeAtCp;
         Debug.Log("Difference: " + differenceToRecord);
         cpReached++;
+        UiManager.Instance.SetSplitTime(differenceToRecord);
         if (cpReached == checkpoints.Length)
         {
             TrackComplete();
@@ -227,6 +227,10 @@ public class TrackController : MonoBehaviour
             case GameState.countdown:
                 break;
 
+            case GameState.racing:
+                UiManager.Instance.SetCurrentTime(RunStopWatch());
+                break;
+
             default:
                 break;
         }
@@ -254,6 +258,8 @@ public class TrackController : MonoBehaviour
     private void StartCountdown()
     {
         Invoke("StartRacing", 2);
+        UiManager.Instance.PlayCountdown();
+
         Debug.Log("Coundtown began");
     }
 
