@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a4df5395dc892ce0fb205e3c73044c12
+guid: 508a497f14c15fdddaf5d187fe26295e
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -11,6 +11,18 @@ TextureImporter:
   - first:
       213: -8515465822480686589
     second: 1-2-3_2
+  - first:
+      213: -4284386676575201382
+    second: Countdown_0
+  - first:
+      213: -1988940130903719940
+    second: Countdown_1
+  - first:
+      213: 6898371139164222699
+    second: Countdown_2
+  - first:
+      213: 7923392192098530938
+    second: Countdown_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -120,7 +132,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1-2-3_0
+      name: Countdown_0
       rect:
         serializedVersion: 2
         x: 0
@@ -134,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ab1db39b168a6070800000000000000
-      internalID: 8100434332780141480
+      spriteID: a97915e640dca84c0800000000000000
+      internalID: -4284386676575201382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1-2-3_1
+      name: Countdown_1
       rect:
         serializedVersion: 2
         x: 280
@@ -155,14 +167,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24795364cf3292640800000000000000
-      internalID: 5055611623116740418
+      spriteID: cfff6f12d7dd564e0800000000000000
+      internalID: -1988940130903719940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1-2-3_2
+      name: Countdown_2
       rect:
         serializedVersion: 2
         x: 560
@@ -176,8 +188,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3022f0a83fcf2d980800000000000000
-      internalID: -8515465822480686589
+      spriteID: be4b0be7000fbbf50800000000000000
+      internalID: 6898371139164222699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Countdown_3
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 0
+        width: 280
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a76f222083b85fd60800000000000000
+      internalID: 7923392192098530938
       vertices: []
       indices: 
       edges: []
