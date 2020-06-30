@@ -503,21 +503,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6585880759036062624, guid: f5fe340e2578c2bfe938f5376876ec7c,
-        type: 3}
-      propertyPath: m_Name
-      value: SplitTimeText
-      objectReference: {fileID: 0}
-    - target: {fileID: 6585880759193994321, guid: f5fe340e2578c2bfe938f5376876ec7c,
-        type: 3}
-      propertyPath: m_Name
-      value: CurrentTimeText
-      objectReference: {fileID: 0}
-    - target: {fileID: 6585880759391025507, guid: f5fe340e2578c2bfe938f5376876ec7c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
     - target: {fileID: 6585880759690714312, guid: f5fe340e2578c2bfe938f5376876ec7c,
         type: 3}
       propertyPath: m_LocalPosition.x

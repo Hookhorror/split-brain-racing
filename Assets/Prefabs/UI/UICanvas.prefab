@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6585880759036062627}
   - component: {fileID: 6585880759036062626}
   m_Layer: 5
-  m_Name: CheckpointFeedbackText
+  m_Name: SplitTimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 6585880759193994332}
   - component: {fileID: 6585880759193994323}
   m_Layer: 5
-  m_Name: RunningTimeText
+  m_Name: CurrentTimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
