@@ -34,6 +34,13 @@ public class UiManager : MonoBehaviour
     }
 
 
+    public void ResetTimes()
+    {
+        SetCurrentTime(0);
+        splitTime.ClearMesh();
+    }
+
+
     public void PlayCountdown()
     {
         countdown.SetActive(true);

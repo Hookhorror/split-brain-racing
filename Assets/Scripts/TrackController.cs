@@ -22,6 +22,10 @@ public class TrackController : MonoBehaviour
     GameObject ship;
     public Color[] playerColors;
     private string recordFile = @"./trackrecords.json";
+    private int countdownDuration = 3;
+    public float goldTime;
+    public float silverTime;
+    public float bronzeTime;
 
 
     void Start()
@@ -61,6 +65,7 @@ public class TrackController : MonoBehaviour
         var shipCont = ship.GetComponent<ShipController>();
         shipCont.SetLastCheckpoint(startPoint);
         shipCont.ResetToLastCheckpoint();
+        UiManager.Instance.ResetTimes();
 
         // Reset checkpoints used status
         for (int i = 0; i < checkpoints.Length; i++)
@@ -102,8 +107,7 @@ public class TrackController : MonoBehaviour
 
         float[] cps = JsonHelper.FromJson<float>(r.checkpoints);
 
-        Debug.Log("CPS PITUUS " + cps.Length);
-
+        // Debug.Log("CPS PITUUS " + cps.Length);
         float[] cpsFloat = new float[cps.Length];
         Debug.Log("cpsFloat PITUUS " + cpsFloat.Length);
         for (int i = 0; i < cps.Length; i++)
@@ -137,6 +141,7 @@ public class TrackController : MonoBehaviour
         }
 
         CancelInvoke();
+        UiManager.Instance.ResetTimes();
         Debug.Log("RESETING TO START");
         DisablePlayerControls();
         SetUpRunStuff();
@@ -158,7 +163,6 @@ public class TrackController : MonoBehaviour
 
     private void RecoverFromCrash()
     {
-
         EnablePlayerControls();
         ship.GetComponent<ShipController>().RequestReset();
     }
@@ -217,7 +221,6 @@ public class TrackController : MonoBehaviour
             case GameState.waitingPlayers:
                 if (pim.playerCount == 2)
                 {
-                    // Invoke("SetPlayerColors", 2);
                     SetPlayerColors();
                     gameState = GameState.countdown;
                     StartCountdown();
@@ -257,9 +260,8 @@ public class TrackController : MonoBehaviour
 
     private void StartCountdown()
     {
-        Invoke("StartRacing", 2);
+        Invoke("StartRacing", countdownDuration);
         UiManager.Instance.PlayCountdown();
-
         Debug.Log("Coundtown began");
     }
 
