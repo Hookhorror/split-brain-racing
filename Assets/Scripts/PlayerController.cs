@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         motorSound.source = gameObject.AddComponent<AudioSource>();
         motorSound.source.clip = motorClip;
         motorSound.source.loop = true;
+        motorSound.source.volume = 0.35f;
     }
 
 
