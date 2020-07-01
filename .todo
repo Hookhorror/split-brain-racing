@@ -18,14 +18,20 @@
     <note priority="veryhigh" time="1593436796">
         Grafiikka checkpointeille
     </note>
+    <note priority="veryhigh" time="1593528411">
+        Tavoite ajat
+    </note>
     <note priority="high" time="1593172502">
         Tutustu materiaaleihin
     </note>
     <note priority="high" time="1593172517">
         Keksi esteitä
     </note>
-    <note priority="high" time="1593430925">
+    <note priority="high" time="1593430925" done="1593528761">
         Laskuri lähtöön
+        <comment>
+            se on valmis
+        </comment>
     </note>
     <note priority="medium" time="1593177276">
         Blingiä alkuvalikkoon
