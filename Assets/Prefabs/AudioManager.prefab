@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8192408599966887469}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Motor
-    clip: {fileID: 8300000, guid: f03ca00748cc75c438092911536058b5, type: 3}
+  - name: RocketEngine
+    clip: {fileID: 8300000, guid: a5e4b16d8a96f88449cf8453f655d6f3, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

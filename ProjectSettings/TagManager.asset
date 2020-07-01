@@ -9,6 +9,7 @@ TagManager:
   - CheckpointManager
   - Track
   - PlayerManager
+  - AudioManager
   layers:
   - Default
   - TransparentFX
