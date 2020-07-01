@@ -6,6 +6,8 @@ public class UiManager : MonoBehaviour
     public static UiManager Instance;
     public TextMeshProUGUI currentTime;
     public TextMeshProUGUI splitTime;
+    public TextMeshProUGUI playerCount;
+    public Transform playerInfoBox;
     public GameObject countdown;
     public Animator animator;
 
@@ -38,6 +40,18 @@ public class UiManager : MonoBehaviour
     {
         SetCurrentTime(0);
         splitTime.ClearMesh();
+    }
+
+
+    public void SetPlayerCount(int count)
+    {
+        playerCount.text = count.ToString();
+    }
+
+    public void HidePlayerCount()
+    {
+        // playerCount.enabled = false;
+        playerInfoBox.gameObject.SetActive(false);
     }
 
 
