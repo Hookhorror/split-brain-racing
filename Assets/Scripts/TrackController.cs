@@ -172,7 +172,8 @@ public class TrackController : MonoBehaviour
     private void RecoverFromCrash()
     {
         crashed = false;
-        EnablePlayerControls();
+        if (gameState == GameState.racing)
+            EnablePlayerControls();
         ship.GetComponent<ShipController>().RequestReset();
     }
 

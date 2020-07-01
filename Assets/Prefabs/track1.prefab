@@ -1474,6 +1474,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  cpDefaultRecords:
+  - 2
+  - 10
+  - 15
+  - 21
+  - 28
+  - 34
+  - 45
+  - 55
+  - 58
   ship: {fileID: 0}
   playerColors:
   - {r: 1, g: 0.6313726, b: 0.6313726, a: 0.8}
