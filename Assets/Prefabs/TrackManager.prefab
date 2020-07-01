@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8192408599966887470
+--- !u!1 &6376249935404797810
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,51 +8,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8192408599966887468}
-  - component: {fileID: 8192408599966887469}
+  - component: {fileID: 6376249935404797812}
+  - component: {fileID: 6376249935404797813}
   m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: AudioManager
+  m_Name: TrackManager
+  m_TagString: Track
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8192408599966887468
+--- !u!4 &6376249935404797812
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8192408599966887470}
+  m_GameObject: {fileID: 6376249935404797810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.043964, y: 8.811097, z: -4.2539062}
+  m_LocalPosition: {x: -17.153227, y: -6.8949084, z: -22.174805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8192408599966887469
+--- !u!114 &6376249935404797813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8192408599966887470}
+  m_GameObject: {fileID: 6376249935404797810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d788747a4742b2b0820b0e14bad7690, type: 3}
+  m_Script: {fileID: 11500000, guid: 593b4998886f10f35a61584e8a77dba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: Checkpoint
-    clip: {fileID: 8300000, guid: b0655a5fd6d4259b18e387bd2bbc8ec7, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Crash
-    clip: {fileID: 8300000, guid: 664c57a4fcdb2025ba425661f218321c, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
+  checkpoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerColors:
+  - {r: 1, g: 0.6320754, b: 0.6320754, a: 1}
+  - {r: 0.5707547, g: 0.5707547, b: 1, a: 0.4117647}
+  - {r: 0, g: 1, b: 0.25, a: 0}
+  - {r: 1, g: 0.9783717, b: 0, a: 0}
+  goldTime: 0
+  silverTime: 0
+  bronzeTime: 0
+  audioManager: {fileID: 0}

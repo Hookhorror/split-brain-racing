@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     // public AudioManager audioManager;
     public float motorPower;
     public float shipSize;  // Affects to the postion of flames
-    Rigidbody2D playerRBody;
+    // Rigidbody2D playerRBody;
     SpriteRenderer sr;
     bool resetToCpRequested;
     bool resetToStartRequested;
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        playerRBody = GetComponent<Rigidbody2D>();
+        // playerRBody = GetComponent<Rigidbody2D>();
         // sr = GetComponent<SpriteRenderer>();
         resetToCpRequested = false;
         ship = GameObject.FindGameObjectWithTag("Ship");

@@ -16,10 +16,11 @@ public class TrackController : MonoBehaviour
     public RecordData recordTime;
     private Vector2 startPoint;
     public GameObject[] checkpoints;
+    public float[] cpDefaultRecords;
     private GameState gameState = GameState.waitingPlayers;
     PlayerInputManager pim;
     GameObject[] players;
-    GameObject ship;
+    public GameObject ship;
     public Color[] playerColors;
     private string recordFile = @"./trackrecords.json";
     private int countdownDuration = 3;
@@ -27,6 +28,7 @@ public class TrackController : MonoBehaviour
     public float silverTime;
     public float bronzeTime;
     public AudioManager audioManager;
+    bool crashed;
 
 
     void Start()
@@ -40,15 +42,18 @@ public class TrackController : MonoBehaviour
     private void SetUpTrackStuff()
     {
         pim = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerInputManager>();
-        ship = GameObject.FindGameObjectWithTag("Ship");
+        // ship = GameObject.FindGameObjectWithTag("Ship");
 
         startPoint = ship.transform.position;
+        Debug.Log("Start Position" + startPoint);
         GetCheckpointRecords();
 
         // Set record split times to checkpoints
         var rec = recordTime.GetCheckpointTimes();
         if (checkpoints.Length != rec.Length)
             Debug.LogError("Number of checkpoints and split times differ");
+
+        Debug.Log(checkpoints.Length);
 
         for (int i = 0; i < checkpoints.Length; i++)
         {
@@ -75,7 +80,7 @@ public class TrackController : MonoBehaviour
             checkpoints[i].GetComponent<CheckpointController>().ResetStatus();
         }
 
-        // DisablePlayerControls();
+        crashed = false;
         gameState = GameState.waitingPlayers;
 
     }
@@ -101,7 +106,7 @@ public class TrackController : MonoBehaviour
         string recordJSON = ReadFile();
         if (recordJSON == null)
         {
-            recordTime = new RecordData("MISSING", new float[] { 9, 9, 9 });
+            recordTime = new RecordData("MISSING", cpDefaultRecords);
             return;
         }
         Debug.Log(recordJSON);
@@ -117,7 +122,6 @@ public class TrackController : MonoBehaviour
             // Debug.Log(cps[i]);
             cpsFloat[i] = (cps[i]);
             Debug.Log(cpsFloat[i]);
-
         }
 
         recordTime = new RecordData(r.date, cpsFloat);
@@ -127,6 +131,7 @@ public class TrackController : MonoBehaviour
     public void ShipCrashed()
     {
         PlaySound("Crash");
+        crashed = true;
         DisablePlayerControls();
         CancelInvoke();
         Invoke("RecoverFromCrash", 1);
@@ -166,9 +171,14 @@ public class TrackController : MonoBehaviour
 
     private void RecoverFromCrash()
     {
-        EnablePlayerControls();
+        crashed = false;
+        if (gameState == GameState.racing)
+            EnablePlayerControls();
         ship.GetComponent<ShipController>().RequestReset();
     }
+
+
+    public bool IsCrashed() => crashed;
 
 
     /// Run when countdown ends and racing begin
@@ -294,6 +304,18 @@ public class TrackController : MonoBehaviour
         {
             p.GetComponent<PlayerController>().DisableControls();
         }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.gameObject.CompareTag("Ship"))
+            return;
+
+        Debug.Log("You went over the edge");
+        // Inform track about the crash
+        GameObject.FindGameObjectWithTag("Track")
+            .GetComponent<TrackController>().ShipCrashed();
     }
 
 
