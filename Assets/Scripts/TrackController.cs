@@ -222,8 +222,10 @@ public class TrackController : MonoBehaviour
         switch (gameState)
         {
             case GameState.waitingPlayers:
+                UiManager.Instance.SetPlayerCount(pim.playerCount);
                 if (pim.playerCount == 2)
                 {
+                    UiManager.Instance.HidePlayerCount();
                     SetPlayerColors();
                     gameState = GameState.countdown;
                     StartCountdown();

@@ -57,6 +57,9 @@ public class PlayerController : MonoBehaviour
             m_MoveAction = m_PlayerInput.actions["move"];
         }
 
+        // InputActionMap iam = m_PlayerInput.actions.FindActionMap("UI");
+        // iam.Disable();
+
         SetUpSound();
     }
 
@@ -135,7 +138,6 @@ public class PlayerController : MonoBehaviour
 
         sr.enabled = true;
         PlayMotorSound();
-        // audioManager.Play("RocketEngine");
 
         // Position around ship
         Vector3 offset = (Vector3)GetNormalizedMovement() * shipSize;
