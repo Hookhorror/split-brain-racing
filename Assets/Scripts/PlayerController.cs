@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     // private InputAction m_LookAction;
     private InputAction m_MoveAction;
     private InputAction m_FireAction;
+    // public AudioManager audioManager;
     public float motorPower;
     public float shipSize;  // Affects to the postion of flames
     Rigidbody2D playerRBody;
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D shipRBody;
     private bool moveIsEnabled = false;
     private bool resetIsEnabled = false;
+    private Sound motorSound;
+    public AudioClip motorClip;
 
 
     void Awake()
@@ -27,6 +30,15 @@ public class PlayerController : MonoBehaviour
         // This is in Awake. In start is was not selected quick enough
         // for trackController's calls to SetColor().
         sr = GetComponent<SpriteRenderer>();
+    }
+
+
+    void SetUpSound()
+    {
+        motorSound = new Sound();
+        motorSound.source = gameObject.AddComponent<AudioSource>();
+        motorSound.source.clip = motorClip;
+        motorSound.source.loop = true;
     }
 
 
@@ -45,8 +57,7 @@ public class PlayerController : MonoBehaviour
             m_MoveAction = m_PlayerInput.actions["move"];
         }
 
-        // m_PlayerInput.enabled = false;
-        // m_PlayerInput.SwitchCurrentActionMap();
+        SetUpSound();
     }
 
 
@@ -118,10 +129,13 @@ public class PlayerController : MonoBehaviour
         if (movement == Vector2.zero || !moveIsEnabled)
         {
             sr.enabled = false;
+            StopMotorSound();
             return;
         }
 
         sr.enabled = true;
+        PlayMotorSound();
+        // audioManager.Play("RocketEngine");
 
         // Position around ship
         Vector3 offset = (Vector3)GetNormalizedMovement() * shipSize;
@@ -135,6 +149,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove()
     {
+    }
+
+
+    private void PlayMotorSound()
+    {
+        if (motorSound.source.isPlaying)
+            return;
+
+        motorSound.source.Play();
+    }
+
+
+    private void StopMotorSound()
+    {
+        if (motorSound.source.isPlaying)
+            motorSound.source.Stop();
     }
 
 

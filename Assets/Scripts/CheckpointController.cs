@@ -31,7 +31,9 @@ public class CheckpointController : MonoBehaviour
         // Set a new resetpoint for the ship
         ship.GetComponent<ShipController>().SetLastCheckpoint(resetPoint.position);
         // Inform the track that this checkpoint has been reached
-        track.GetComponent<TrackController>().SplitTime(splitTime);
+        var tc = track.GetComponent<TrackController>();
+        tc.PlaySound("Checkpoint");
+        tc.SplitTime(splitTime);
 
         isUsed = true;
     }
@@ -40,7 +42,7 @@ public class CheckpointController : MonoBehaviour
     public void SetTime(float time)
     {
         splitTime = time;
-        Debug.Log("Checkpoints split time" + splitTime);
+        // Debug.Log("Checkpoints split time" + splitTime);
     }
 
 

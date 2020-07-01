@@ -26,6 +26,7 @@ public class TrackController : MonoBehaviour
     public float goldTime;
     public float silverTime;
     public float bronzeTime;
+    public AudioManager audioManager;
 
 
     void Start()
@@ -40,6 +41,7 @@ public class TrackController : MonoBehaviour
     {
         pim = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerInputManager>();
         ship = GameObject.FindGameObjectWithTag("Ship");
+
         startPoint = ship.transform.position;
         GetCheckpointRecords();
 
@@ -112,7 +114,7 @@ public class TrackController : MonoBehaviour
         Debug.Log("cpsFloat PITUUS " + cpsFloat.Length);
         for (int i = 0; i < cps.Length; i++)
         {
-            Debug.Log(cps[i]);
+            // Debug.Log(cps[i]);
             cpsFloat[i] = (cps[i]);
             Debug.Log(cpsFloat[i]);
 
@@ -124,6 +126,7 @@ public class TrackController : MonoBehaviour
 
     public void ShipCrashed()
     {
+        PlaySound("Crash");
         DisablePlayerControls();
         CancelInvoke();
         Invoke("RecoverFromCrash", 1);
@@ -237,6 +240,12 @@ public class TrackController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+
+    public void PlaySound(string sound)
+    {
+        audioManager.Play(sound);
     }
 
 
