@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-    Rigidbody2D rbody;
+    public Rigidbody2D rbody;
     Vector2 lastCheckpoint;
     Vector2 startPoint;
     private bool resetRequested = false;
 
     void Start()
     {
-        rbody = GetComponent<Rigidbody2D>();
-        lastCheckpoint = Vector2.zero;
-        // InvokeRepeating("DubugOncePerSec", 1, 1);
+
     }
 
 

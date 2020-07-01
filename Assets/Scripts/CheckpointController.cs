@@ -28,10 +28,15 @@ public class CheckpointController : MonoBehaviour
         if (!col.gameObject.CompareTag("Ship"))
             return;
 
+        var tc = track.GetComponent<TrackController>();
+
+        // Check that player is not gliding while crashed
+        if (tc.IsCrashed())
+            return;
+
         // Set a new resetpoint for the ship
         ship.GetComponent<ShipController>().SetLastCheckpoint(resetPoint.position);
         // Inform the track that this checkpoint has been reached
-        var tc = track.GetComponent<TrackController>();
         tc.PlaySound("Checkpoint");
         tc.SplitTime(splitTime);
 

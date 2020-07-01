@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1311465843369085593}
   - component: {fileID: 1311465843369085592}
   - component: {fileID: 1311465843369085594}
-  - component: {fileID: 1311465843369085595}
+  - component: {fileID: 1311465842846597514}
   m_Layer: 0
   m_Name: track1
-  m_TagString: Untagged
+  m_TagString: Track
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 20164fdc97b2270efa9697a29f7e04fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1458,7 +1458,7 @@ PolygonCollider2D:
       - {x: -9.047656, y: 3.9890623}
       - {x: -9.914844, y: 3.9312499}
       - {x: -9.914844, y: 3.9890623}
---- !u!114 &1311465843369085595
+--- !u!114 &1311465842846597514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1467,6 +1467,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1311465843369085575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a18edf0c4fb6c5d883dfecdf3f6747b, type: 3}
+  m_Script: {fileID: 11500000, guid: 593b4998886f10f35a61584e8a77dba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ship: {fileID: 0}
+  playerColors:
+  - {r: 1, g: 0.6313726, b: 0.6313726, a: 0.8}
+  - {r: 0.57254905, g: 0.57254905, b: 1, a: 0.6627451}
+  - {r: 0.04750526, g: 1, b: 0, a: 0.7529412}
+  - {r: 0.9243891, g: 1, b: 0, a: 0.7490196}
+  goldTime: 0
+  silverTime: 0
+  bronzeTime: 0
+  audioManager: {fileID: 0}

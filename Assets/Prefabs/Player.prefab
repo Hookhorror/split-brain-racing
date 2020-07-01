@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motorPower: 1
-  shipSize: 1.5
+  shipSize: 1
   motorClip: {fileID: 8300000, guid: a5e4b16d8a96f88449cf8453f655d6f3, type: 3}
 --- !u!50 &-1515707769606850418
 Rigidbody2D:

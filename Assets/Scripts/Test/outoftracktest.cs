@@ -6,7 +6,7 @@ public class outoftracktest : MonoBehaviour
 {
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("JEE");
+        // Debug.Log("JEE");
     }
 
     private void OnTriggerExit2D(Collider2D other)
