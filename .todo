@@ -3,6 +3,15 @@
     <note priority="veryhigh" time="1593172172" done="1593177245">
         Joku versio radasta
     </note>
+    <note priority="veryhigh" time="1593172240" done="1593611017">
+        Grafiikka radalle
+    </note>
+    <note priority="veryhigh" time="1593436781" done="1593611018">
+        Grafiikka maaliviivalle
+    </note>
+    <note priority="veryhigh" time="1593436796" done="1593611018">
+        Grafiikka checkpointeille
+    </note>
     <note priority="high" time="1593172225" done="1593436746">
         Grafiikat alukselle
     </note>
@@ -15,17 +24,38 @@
     <note priority="medium" time="1593172205" done="1593177214">
         Alkuvalikko
     </note>
-    <note priority="veryhigh" time="1593172240" done="1593611017">
-        Grafiikka radalle
-    </note>
-    <note priority="veryhigh" time="1593436781" done="1593611018">
-        Grafiikka maaliviivalle
-    </note>
-    <note priority="veryhigh" time="1593436796" done="1593611018">
-        Grafiikka checkpointeille
-    </note>
     <note priority="veryhigh" time="1593528411">
         Tavoite ajat
+    </note>
+    <note priority="veryhigh" time="1593784249">
+        checkpoint viiva/nuoli
+    </note>
+    <note priority="veryhigh" time="1593784260">
+        lähtö/maaliviiva
+    </note>
+    <note priority="veryhigh" time="1593784279">
+        esteet/liikkuvat esteet
+    </note>
+    <note priority="veryhigh" time="1593784285">
+        seinät
+    </note>
+    <note priority="veryhigh" time="1593784304">
+        ennätysajat
+    </note>
+    <note priority="veryhigh" time="1593784325">
+        ennätykset näkyville valikkoon
+    </note>
+    <note priority="veryhigh" time="1593784345">
+        mitalit päävalikkoon
+    </note>
+    <note priority="veryhigh" time="1593784355">
+        leaderboards
+    </note>
+    <note priority="veryhigh" time="1593784361">
+        musiikki
+    </note>
+    <note priority="veryhigh" time="1593784384">
+        pause menu
     </note>
     <note priority="high" time="1593172502">
         Tutustu materiaaleihin
@@ -33,8 +63,17 @@
     <note priority="high" time="1593172517">
         Keksi esteitä
     </note>
+    <note priority="high" time="1593784293">
+        toinen rata
+    </note>
+    <note priority="high" time="1593784331">
+        grafiikka yhtenäiseksi
+    </note>
     <note priority="medium" time="1593177276">
         Blingiä alkuvalikkoon
+    </note>
+    <note priority="medium" time="1593784311">
+        boosti alukselle
     </note>
     <note priority="low" time="1593172488">
         Kimmottava este
