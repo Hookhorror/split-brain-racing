@@ -43,10 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593b4998886f10f35a61584e8a77dba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  cpDefaultRecords: []
   playerColors:
   - {r: 1, g: 0.6320754, b: 0.6320754, a: 1}
   - {r: 0.5707547, g: 0.5707547, b: 1, a: 0.4117647}
