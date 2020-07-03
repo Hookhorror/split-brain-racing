@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Json;
 using UnityEngine;
 
 public class RecordManager : MonoBehaviour
@@ -35,6 +36,13 @@ public class RecordManager : MonoBehaviour
             Debug.LogWarning("Record file does not exist");
             trackRecords = new TrackRecords();
         }
+        else
+        {
+            FileStream fs = File.OpenRead(recordFile);
+            var ser = new DataContractJsonSerializer(typeof(TrackRecords));
+            trackRecords = (TrackRecords)ser.ReadObject(fs);
+            fs.Close();
+        }
         trackRecords.Init();
         return;
     }
@@ -42,10 +50,14 @@ public class RecordManager : MonoBehaviour
 
     private void SaveRecords()
     {
-        string resultJson = JsonUtility.ToJson(trackRecords, true);
-        StreamWriter writer = new StreamWriter(recordFile);
-        writer.Write(resultJson);
-        writer.Close();
+        // StreamWriter writer = new StreamWriter(recordFile);
+        FileStream fs = File.OpenWrite(recordFile);
+
+        string trackRecordsJson = JsonUtility.ToJson(trackRecords, true);
+        var ser = new DataContractJsonSerializer(typeof(TrackRecords));
+
+        ser.WriteObject(fs, trackRecords);
+        fs.Close();
 
     }
 

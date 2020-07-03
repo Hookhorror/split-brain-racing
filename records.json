@@ -1,7 +1,1 @@
-{
-    "trackRecords": [
-        {
-            "instanceID": 0
-        }
-    ]
-}
+{"trackRecords":[{"TopResults":[{"checkpointTimes":[0.953704834,2.13370514,2.993702],"name":"Testaaja"},{"checkpointTimes":[0.969848633,2.12984848,3.00984955],"name":"Testaaja"},{"checkpointTimes":[0.970169067,2.13017273,3.01016235],"name":"Testaaja"},{"checkpointTimes":[0.9709854,2.13098526,3.01098251],"name":"Testaaja"},{"checkpointTimes":[0.971730232,2.131731,3.01173019],"name":"Testaaja"},{"checkpointTimes":[0.9721832,2.13217926,3.01217651],"name":"Testaaja"},{"checkpointTimes":[0.9724293,2.13242912,3.01242828],"name":"Testaaja"},{"checkpointTimes":[0.9725418,2.13254547,3.01254272],"name":"Testaaja"},{"checkpointTimes":[0.9731827,2.13318634,3.01318359],"name":"Testaaja"},{"checkpointTimes":[0.9742205,2.13422036,3.01422048],"name":"Testaaja"}],"trackTag":"track1"}]}

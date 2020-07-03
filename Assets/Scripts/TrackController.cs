@@ -23,7 +23,7 @@ public class TrackController : MonoBehaviour
     private GameObject ship;
     public Color[] playerColors;
     private string recordFile = @"./trackrecords.json";
-    private int countdownDuration = 3;
+    private int countdownDuration = 1;
     public float goldTime;
     public float silverTime;
     public float bronzeTime;
@@ -124,12 +124,12 @@ public class TrackController : MonoBehaviour
 
         // Debug.Log("CPS PITUUS " + cps.Length);
         float[] cpsFloat = new float[cps.Length];
-        Debug.Log("cpsFloat PITUUS " + cpsFloat.Length);
+        // Debug.Log("cpsFloat PITUUS " + cpsFloat.Length);
         for (int i = 0; i < cps.Length; i++)
         {
             // Debug.Log(cps[i]);
             cpsFloat[i] = (cps[i]);
-            Debug.Log(cpsFloat[i]);
+            // Debug.Log(cpsFloat[i]);
         }
 
         recordTime = new RecordData(r.date, cpsFloat);
@@ -304,7 +304,6 @@ public class TrackController : MonoBehaviour
     {
         Invoke("StartRacing", countdownDuration);
         UiManager.Instance.PlayCountdown();
-        Debug.Log("Coundtown began");
     }
 
 

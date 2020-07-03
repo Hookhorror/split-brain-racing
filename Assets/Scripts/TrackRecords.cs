@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+
 using UnityEngine;
 
 
 [Serializable]
-public class TrackRecords : MonoBehaviour
+[DataContract]
+public class TrackRecords
 {
     // Class contains array of records TrackRecords and
     // Dictionary that can be used to find index of the track with
     // track's tag.
+    [DataMember]
     public TrackRecord[] trackRecords;
 
-    [NonSerialized]
     public Dictionary<string, int> indices;
+    public int maxEntries;
 
 
     public void Init()
@@ -24,6 +28,7 @@ public class TrackRecords : MonoBehaviour
         {
             indices.Add(trackRecords[i].trackTag, i);
         }
+        maxEntries = 10;
     }
 
 
@@ -42,7 +47,7 @@ public class TrackRecords : MonoBehaviour
             index = AddNewTrack(trackTag);
         }
 
-        return trackRecords[index].AddRecord(name, checkpoints);
+        return trackRecords[index].AddRecord(name, checkpoints, maxEntries);
     }
 
 

@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 [Serializable]
+[DataContract]
 public class Record
 {
+    [DataMember]
     public string name;
+
+    [DataMember]
     private float[] checkpointTimes;
 
 

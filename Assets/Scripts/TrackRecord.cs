@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 [Serializable]
-public class TrackRecord : MonoBehaviour
+[DataContract]
+public class TrackRecord
 {
+    [DataMember]
     public string trackTag;
+
+    [DataMember]
     Record[] TopResults;
-    private int maxEntries = 10;
 
 
     public TrackRecord(string trackTag)
@@ -18,10 +22,14 @@ public class TrackRecord : MonoBehaviour
 
     /// Adds a record to record list if it belongs there. Returns postion
     /// of new record or -1.
-    public int AddRecord(string name, float[] checkpoints)
+    public int AddRecord(string name, float[] checkpoints, int maxEntries)
     {
+        Debug.Log("TopResults.Length " + TopResults.Length);
         Debug.Log("TrackRecord.AddRecord alussa");
+        Debug.Log("maxEntries " + maxEntries);
         Record r = new Record(name, checkpoints);
+
+        Debug.Log("Record " + name + " " + checkpoints.Length);
 
         // If there is no previous records, just add this to first place
         if (TopResults == null || TopResults.Length < 1)
