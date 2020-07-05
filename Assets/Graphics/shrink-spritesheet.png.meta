@@ -1,7 +1,43 @@
 fileFormatVersion: 2
-guid: 1efb7f6b2a9eb479586312a0560de22b
+guid: 0b194eb5f5f5726a693b263d23b100cc
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1269031009794940691
+    second: shrink-spritesheet_0
+  - first:
+      213: -861800547521114720
+    second: shrink-spritesheet_1
+  - first:
+      213: 6294772944866665625
+    second: shrink-spritesheet_2
+  - first:
+      213: 2149491541603895253
+    second: shrink-spritesheet_3
+  - first:
+      213: 4340272873448493453
+    second: shrink-spritesheet_4
+  - first:
+      213: 6421462985458690775
+    second: shrink-spritesheet_5
+  - first:
+      213: -2253595937209910665
+    second: shrink-spritesheet_6
+  - first:
+      213: -7568394723620090207
+    second: shrink-spritesheet_7
+  - first:
+      213: -9013583531175473619
+    second: shrink-spritesheet_8
+  - first:
+      213: 7513493857362318198
+    second: shrink-spritesheet_9
+  - first:
+      213: -6440516051171585211
+    second: shrink-spritesheet_10
+  - first:
+      213: -214450918908002542
+    second: shrink-spritesheet_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +76,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +107,273 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: shrink-spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.50370276, y: 0.4977796}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31f58c3daf08c9110800000000000000
+      internalID: 1269031009794940691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 1024
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.50329775, y: 0.49934077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad44c1d7f44a04f0800000000000000
+      internalID: -861800547521114720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 1024
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5054694, y: 0.4977224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 994648864a68b5750800000000000000
+      internalID: 6294772944866665625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1533
+        y: 1024
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.50583696, y: 0.49902773}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7c1092b2784dd10800000000000000
+      internalID: 2149491541603895253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.49584085, y: 0.5059314}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d815922ce2fbb3c30800000000000000
+      internalID: 4340272873448493453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 512
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.49669868, y: 0.50563407}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7daa59a109e9d1950800000000000000
+      internalID: 6421462985458690775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 511
+        width: 512
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5009012, y: 0.4972961}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77af6576f6e99b0e0800000000000000
+      internalID: -2253595937209910665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1535
+        y: 510
+        width: 512
+        height: 512
+      alignment: 9
+      pivot: {x: 0.50616, y: 0.49984777}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ae0fa21919a7f690800000000000000
+      internalID: -7568394723620090207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.49765047, y: 0.50281805}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2e89fec88159e280800000000000000
+      internalID: -9013583531175473619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 0
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.4992318, y: 0.50383884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6731926eada454860800000000000000
+      internalID: 7513493857362318198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 0
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.48272434, y: 0.5223586}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54357b756c0be96a0800000000000000
+      internalID: -6440516051171585211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrink-spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 1533
+        y: 0
+        width: 511.75
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5151048, y: 0.49125955}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f7bb4860e160df0800000000000000
+      internalID: -214450918908002542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
