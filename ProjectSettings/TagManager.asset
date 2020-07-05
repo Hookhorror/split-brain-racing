@@ -10,6 +10,7 @@ TagManager:
   - Track
   - PlayerManager
   - AudioManager
+  - RecordManager
   layers:
   - Default
   - TransparentFX
