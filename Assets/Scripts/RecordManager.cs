@@ -69,4 +69,10 @@ public class RecordManager : MonoBehaviour
         return placement;
     }
 
+
+    public Record[] GetRecords(string trackTag)
+    {
+        return trackRecords.GetRecords(trackTag);
+    }
+
 }

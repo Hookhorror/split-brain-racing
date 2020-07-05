@@ -32,6 +32,18 @@ public class TrackRecords
     }
 
 
+    public Record[] GetRecords(string trackTag)
+    {
+        int index;
+        if (indices.TryGetValue(trackTag, out index))
+        {
+            return trackRecords[index].GetRecords();
+        }
+        return new Record[0];
+
+    }
+
+
     /// Adds a record to track and returns records placement on a list or
     /// -1 if record is not good enough to list.
     public int AddRecord(string trackTag, string name, float[] checkpoints)

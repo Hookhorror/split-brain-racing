@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 
@@ -30,6 +31,7 @@ public class TrackController : MonoBehaviour
     public AudioManager audioManager;
     bool crashed;
     // RecordManager recordManager;
+    string trackTag;
 
 
     void Start()
@@ -49,6 +51,8 @@ public class TrackController : MonoBehaviour
         ship = GameObject.FindGameObjectWithTag("Ship");
         checkpoints = GameObject.FindGameObjectWithTag("CheckpointManager").
                 GetComponent<CheckpointManager>().GetCheckpoints();
+
+        trackTag = SceneManager.GetActiveScene().name;
 
         startPoint = ship.transform.position;
         Debug.Log("Start Position" + startPoint);
@@ -164,18 +168,18 @@ public class TrackController : MonoBehaviour
     }
 
 
-    private void SaveRecord()
-    {
-        Result r = new Result();
-        r.date = "UUSI";
-        r.checkpoints = JsonHelper.ToJson(cpRunTimes, true);
-        string resultJson = JsonUtility.ToJson(r, true);
+    // private void SaveRecord()
+    // {
+    //     Result r = new Result();
+    //     r.date = "UUSI";
+    //     r.checkpoints = JsonHelper.ToJson(cpRunTimes, true);
+    //     string resultJson = JsonUtility.ToJson(r, true);
 
-        StreamWriter writer = new StreamWriter(recordFile);
-        writer.Write(resultJson);
-        writer.Close();
+    //     StreamWriter writer = new StreamWriter(recordFile);
+    //     writer.Write(resultJson);
+    //     writer.Close();
 
-    }
+    // }
 
 
     private void RecoverFromCrash()
@@ -229,11 +233,19 @@ public class TrackController : MonoBehaviour
         {
             // New record time
             Debug.Log("NEW RECORD " + cpRunTimes[cpRunTimes.Length - 1]);
-            SaveRecord();
+            // SaveRecord();
             recordTime.SetCheckpointTimes(cpRunTimes);
         }
-        SaveOnNewRecordSystem();
+        int place = SaveOnNewRecordSystem();
 
+        // Get records
+        Record[] r = RecordManager.Instance.GetRecords(trackTag);
+        Debug.Log("Tag: " + trackTag);
+        Debug.Log("Saadun taulukon pituus: " + r.Length);
+        foreach (var item in r)
+        {
+            Debug.Log(item.finalTime());
+        }
 
     }
 
@@ -242,7 +254,7 @@ public class TrackController : MonoBehaviour
     {
         // New Record system
         // int place = recordManager.AddRecord("track1", "Testaaja", cpRunTimes);
-        int place = RecordManager.Instance.AddRecord("track1", "Testaaja", cpRunTimes);
+        int place = RecordManager.Instance.AddRecord(trackTag, "Testaaja", cpRunTimes);
         Debug.Log("Sijoitus uudella pistelistalla " + place);
         return place;
     }

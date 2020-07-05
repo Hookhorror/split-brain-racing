@@ -20,6 +20,9 @@ public class TrackRecord
     }
 
 
+    public Record[] GetRecords() => TopResults;
+
+
     /// Adds a record to record list if it belongs there. Returns postion
     /// of new record or -1.
     public int AddRecord(string name, float[] checkpoints, int maxEntries)
@@ -29,7 +32,7 @@ public class TrackRecord
         Debug.Log("maxEntries " + maxEntries);
         Record r = new Record(name, checkpoints);
 
-        Debug.Log("Record " + name + " " + checkpoints.Length);
+        Debug.Log("Adding a new record: " + name + " " + r.finalTime());
 
         // If there is no previous records, just add this to first place
         if (TopResults == null || TopResults.Length < 1)
