@@ -13,15 +13,9 @@ public class Rotate : MonoBehaviour
         rotationSpeed = ObstacleManager.instance.whirlRotationTime;
         size = transform.localScale.x;
         angleToRotate = rotationSpeed / (size * size);
-        Debug.Log(angleToRotate);
     }
     void Update()
     {
-        // float angle = Mathf.Lerp(0, angleToRotate, 0.5f);
-        // Debug.Log(angle);
-        // transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z + angleToRotate);
         transform.RotateAround(Vector3.forward, angleToRotate);
-        // transform.Rotate();
-
     }
 }
