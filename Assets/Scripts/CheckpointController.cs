@@ -9,6 +9,9 @@ public class CheckpointController : MonoBehaviour
     private float splitTime;
     private GameObject ship;
     private GameObject track;
+    private SpriteRenderer spriteRenderer;
+    public Sprite unused;
+    public Sprite used;
 
 
     // Start is called before the first frame update
@@ -16,6 +19,7 @@ public class CheckpointController : MonoBehaviour
     {
         ship = GameObject.FindGameObjectWithTag("Ship");
         track = GameObject.FindGameObjectWithTag("Track");
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -40,6 +44,7 @@ public class CheckpointController : MonoBehaviour
         tc.PlaySound("Checkpoint");
         tc.SplitTime(splitTime);
 
+        spriteRenderer.sprite = used;
         isUsed = true;
     }
 
@@ -54,6 +59,7 @@ public class CheckpointController : MonoBehaviour
     public void ResetStatus()
     {
         isUsed = false;
+        spriteRenderer.sprite = unused;
     }
 
 

@@ -9,25 +9,19 @@ using UnityEngine.UI;
 public class TrackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string trackTag;
+    public Sprite ima;
+    private Image medalsImage;
 
-    // Start is called before the first frame update
-    void Start()
+
+
+    private void Start()
     {
-
+        // ima = Resources.Load<Sprite>("medals_gold_aquired.png");
+        medalsImage = transform.GetChild(1).GetComponent<Image>();
+        medalsImage.sprite = MedalManager.Instance.GetEarnedMedal(trackTag);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
-
-
-    // private void OnMouseEnter()
-    // {
-    //     Debug.Log("Mouse over");
-    //     TrackSelection.Instance.ShowResults(trackTag);
-    // }
 
     // Called when the pointer enters our GUI component.
     // Start tracking the mouse

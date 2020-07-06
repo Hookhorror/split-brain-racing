@@ -14,8 +14,12 @@ public class Rotate : MonoBehaviour
         size = transform.localScale.x;
         angleToRotate = rotationSpeed / (size * size);
     }
+
+
+    [System.Obsolete]
     void Update()
     {
-        transform.RotateAround(Vector3.forward, angleToRotate);
+        // transform.RotateAround(Vector3.forward, angleToRotate);
+        transform.Rotate(0, 0, 3f);
     }
 }

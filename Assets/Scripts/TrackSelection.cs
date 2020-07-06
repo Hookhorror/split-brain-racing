@@ -48,6 +48,7 @@ public class TrackSelection : MonoBehaviour
 
         }
         highscoreList.SetText(sb.ToString());
+        highscoreList.color = Color.cyan;
     }
 
 

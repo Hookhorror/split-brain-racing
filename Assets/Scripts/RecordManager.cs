@@ -75,6 +75,13 @@ public class RecordManager : MonoBehaviour
     }
 
 
+    public float GetBestTime(string trackTag)
+    {
+        float[] times = GetBestRunCheckpoints(trackTag);
+        return times[times.Length - 1];
+    }
+
+
     public Record[] GetRecords(string trackTag)
     {
         return trackRecords.GetRecords(trackTag);
