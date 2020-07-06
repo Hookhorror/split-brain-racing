@@ -70,6 +70,12 @@ public class RecordManager : MonoBehaviour
     }
 
 
+    public float[] GetBestRunCheckpoints(string trackTag)
+    {
+        return trackRecords.GetBestRunCheckpoints(trackTag);
+    }
+
+
     public Record[] GetRecords(string trackTag)
     {
         return trackRecords.GetRecords(trackTag);

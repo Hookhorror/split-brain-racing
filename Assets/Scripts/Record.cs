@@ -24,4 +24,7 @@ public class Record
         return checkpointTimes[checkpointTimes.Length - 1];
     }
 
+
+    public float[] GetCheckpointTimes() => checkpointTimes;
+
 }

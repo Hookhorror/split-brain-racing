@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
@@ -30,7 +29,6 @@ public class TrackController : MonoBehaviour
     public float bronzeTime;
     public AudioManager audioManager;
     bool crashed;
-    // RecordManager recordManager;
     string trackTag;
 
 
@@ -44,8 +42,6 @@ public class TrackController : MonoBehaviour
     /// Track specific stuff that won't need change on resets
     private void SetUpTrackStuff()
     {
-        // recordManager = GameObject.FindGameObjectWithTag("RecordManager")
-        //         .GetComponent<RecordManager>();
         pim = GameObject.FindGameObjectWithTag("PlayerManager").
                 GetComponent<PlayerInputManager>();
         ship = GameObject.FindGameObjectWithTag("Ship");
@@ -56,22 +52,11 @@ public class TrackController : MonoBehaviour
 
         startPoint = ship.transform.position;
         Debug.Log("Start Position" + startPoint);
-        GetCheckpointRecords();
 
         // Set record split times to checkpoints
-        var rec = recordTime.GetCheckpointTimes();
-        // Debug.Log(rec.Length);
-        // Debug.Log(checkpoints.Length);
-        if (checkpoints.Length != rec.Length)
-            Debug.LogError("Number of checkpoints and split times differ");
+        SetRecordTimeToCheckpoints();
 
-        // Debug.Log(checkpoints.Length);
 
-        for (int i = 0; i < checkpoints.Length; i++)
-        {
-            checkpoints[i].GetComponent<CheckpointController>().
-                SetTime(rec[i]);
-        }
     }
 
 
@@ -98,45 +83,21 @@ public class TrackController : MonoBehaviour
     }
 
 
-    private string ReadFile()
+    private void SetRecordTimeToCheckpoints()
     {
-        if (!File.Exists(recordFile))
+        float[] rec = RecordManager.Instance.GetBestRunCheckpoints(trackTag);
+        Debug.Log(rec.Length);
+        if (checkpoints.Length != rec.Length)
         {
-            Debug.LogWarning("Record file does not exist");
-            return null;
+            Debug.LogError("Number of checkpoints and split times differ");
+            rec = cpDefaultRecords;
         }
 
-        StreamReader reader = new StreamReader(recordFile);
-        string data = reader.ReadToEnd();
-        reader.Close();
-        return data;
-    }
-
-
-    private void GetCheckpointRecords()
-    {
-        string recordJSON = ReadFile();
-        if (recordJSON == null)
+        for (int i = 0; i < checkpoints.Length; i++)
         {
-            recordTime = new RecordData("MISSING", cpDefaultRecords);
-            return;
+            checkpoints[i].GetComponent<CheckpointController>().
+                SetTime(rec[i]);
         }
-        Debug.Log(recordJSON);
-        Result r = JsonUtility.FromJson<Result>(recordJSON);
-
-        float[] cps = JsonHelper.FromJson<float>(r.checkpoints);
-
-        // Debug.Log("CPS PITUUS " + cps.Length);
-        float[] cpsFloat = new float[cps.Length];
-        // Debug.Log("cpsFloat PITUUS " + cpsFloat.Length);
-        for (int i = 0; i < cps.Length; i++)
-        {
-            // Debug.Log(cps[i]);
-            cpsFloat[i] = (cps[i]);
-            // Debug.Log(cpsFloat[i]);
-        }
-
-        recordTime = new RecordData(r.date, cpsFloat);
     }
 
 
@@ -166,20 +127,6 @@ public class TrackController : MonoBehaviour
         DisablePlayerControls();
         SetUpRunStuff();
     }
-
-
-    // private void SaveRecord()
-    // {
-    //     Result r = new Result();
-    //     r.date = "UUSI";
-    //     r.checkpoints = JsonHelper.ToJson(cpRunTimes, true);
-    //     string resultJson = JsonUtility.ToJson(r, true);
-
-    //     StreamWriter writer = new StreamWriter(recordFile);
-    //     writer.Write(resultJson);
-    //     writer.Close();
-
-    // }
 
 
     private void RecoverFromCrash()
@@ -218,7 +165,6 @@ public class TrackController : MonoBehaviour
             TrackComplete();
             Debug.Log("Rata suoritettu");
         }
-        // TODO: Send to UI
     }
 
 
@@ -229,14 +175,7 @@ public class TrackController : MonoBehaviour
         DisablePlayerControls();
 
         float finalTime = cpRunTimes[cpRunTimes.Length - 1];
-        if (finalTime < recordTime.GetFinalTime())
-        {
-            // New record time
-            Debug.Log("NEW RECORD " + cpRunTimes[cpRunTimes.Length - 1]);
-            // SaveRecord();
-            recordTime.SetCheckpointTimes(cpRunTimes);
-        }
-        int place = SaveOnNewRecordSystem();
+        int placement = SaveOnNewRecordSystem();
 
         // Get records
         Record[] r = RecordManager.Instance.GetRecords(trackTag);
@@ -244,8 +183,12 @@ public class TrackController : MonoBehaviour
         Debug.Log("Saadun taulukon pituus: " + r.Length);
         foreach (var item in r)
         {
-            Debug.Log(item.finalTime());
+            Debug.Log("From top list: " + item.finalTime());
         }
+
+        // Update checkpoint times if run is a new record
+        if (placement == 1)
+            SetRecordTimeToCheckpoints();
 
     }
 
@@ -253,7 +196,6 @@ public class TrackController : MonoBehaviour
     private int SaveOnNewRecordSystem()
     {
         // New Record system
-        // int place = recordManager.AddRecord("track1", "Testaaja", cpRunTimes);
         int place = RecordManager.Instance.AddRecord(trackTag, "Testaaja", cpRunTimes);
         Debug.Log("Sijoitus uudella pistelistalla " + place);
         return place;
@@ -353,7 +295,6 @@ public class TrackController : MonoBehaviour
 
     private void Debugaa()
     {
-        var pim = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerInputManager>();
         Debug.Log("PLAYERS: " + pim.playerCount);
     }
 

@@ -11,6 +11,7 @@ TagManager:
   - PlayerManager
   - AudioManager
   - RecordManager
+  - HighscoreList
   layers:
   - Default
   - TransparentFX

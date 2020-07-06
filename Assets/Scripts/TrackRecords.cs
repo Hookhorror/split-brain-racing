@@ -44,6 +44,20 @@ public class TrackRecords
     }
 
 
+    public float[] GetBestRunCheckpoints(string trackTag)
+    {
+        int index = -1;
+        if (indices.TryGetValue(trackTag, out index))
+        {
+            Debug.Log("Radan ennätys on olemassa. Palautetaan se.");
+            return trackRecords[index].GetBestRunCheckpoints();
+        }
+
+        Debug.Log("Radan ennätyksiä ei ole. Palautetaan tyhjä float[]");
+        return new float[0];
+    }
+
+
     /// Adds a record to track and returns records placement on a list or
     /// -1 if record is not good enough to list.
     public int AddRecord(string trackTag, string name, float[] checkpoints)

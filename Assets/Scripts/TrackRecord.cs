@@ -23,6 +23,15 @@ public class TrackRecord
     public Record[] GetRecords() => TopResults;
 
 
+    public float[] GetBestRunCheckpoints()
+    {
+        if (TopResults == null || TopResults.Length == 0)
+            return new float[1];
+
+        return TopResults[0].GetCheckpointTimes();
+    }
+
+
     /// Adds a record to record list if it belongs there. Returns postion
     /// of new record or -1.
     public int AddRecord(string name, float[] checkpoints, int maxEntries)
