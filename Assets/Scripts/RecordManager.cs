@@ -10,7 +10,6 @@ public class RecordManager : MonoBehaviour
 
     private TrackRecords trackRecords;
     private string recordFile = "records.json";
-    private bool recordsLoaded = false;
 
 
     void Awake()

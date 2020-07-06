@@ -22,7 +22,6 @@ public class TrackController : MonoBehaviour
     GameObject[] players;
     private GameObject ship;
     public Color[] playerColors;
-    private string recordFile = @"./trackrecords.json";
     private int countdownDuration = 1;
     public float goldTime;
     public float silverTime;
