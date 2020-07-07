@@ -11,7 +11,7 @@ public class UiManager : MonoBehaviour
     public Transform playerInfoBox;
     public GameObject countdown;
     public Animator animator;
-    public TrackController trackController;
+    private TrackController trackController;
 
 
     private void Awake()

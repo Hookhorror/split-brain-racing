@@ -85,20 +85,24 @@ public class TrackController : MonoBehaviour
     }
 
 
+    /// Sets checkpoints times of next medal to achieve, or personal record if
+    /// gold time is already beaten.
     private void SetRecordTimeToCheckpoints()
     {
-        float[] rec = RecordManager.Instance.GetBestRunCheckpoints(trackTag);
-        Debug.Log(rec.Length);
-        if (checkpoints.Length != rec.Length)
+        float[] recCps = RecordManager.Instance.GetBestRunCheckpoints(trackTag);
+        int nextMedal = MedalManager.Instance.NextMedalToAchieve(recCps[recCps.Length - 1], trackTag);
+        Debug.Log("Next MEdal " + nextMedal);
+
+        if (checkpoints.Length != recCps.Length)
         {
             Debug.LogError("Number of checkpoints and split times differ");
-            rec = cpDefaultRecords;
+            recCps = cpDefaultRecords;
         }
 
         for (int i = 0; i < checkpoints.Length; i++)
         {
             checkpoints[i].GetComponent<CheckpointController>().
-                SetTime(rec[i]);
+                SetTime(recCps[i]);
         }
     }
 
@@ -308,6 +312,8 @@ public class TrackController : MonoBehaviour
     {
         if (!paused)
         {
+            if (gameState != GameState.racing)
+                return;
             Debug.Log("PELI PAUSELLE");
             paused = true;
             DisablePlayerControls();

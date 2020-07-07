@@ -125,4 +125,21 @@ public class MedalManager : MonoBehaviour
         return null;
     }
 
+
+    /// Tells what medal is the next one to achieve
+    /// 3 = bronze, 2 = silver, 1 = gold, 0 = all medals got
+    public int NextMedalToAchieve(float recordTime, string trackTag)
+    {
+        MedalTime mt;
+        medalTimes.TryGetValue(trackTag, out mt);
+        if (recordTime > mt.bronzeTime)
+            return 3;
+        if (recordTime > mt.silverTime)
+            return 2;
+        if (recordTime > mt.goldTime)
+            return 1;
+
+        return 0;
+    }
+
 }
