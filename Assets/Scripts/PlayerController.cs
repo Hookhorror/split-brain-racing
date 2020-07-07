@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool resetIsEnabled = false;
     private Sound motorSound;
     public AudioClip motorClip;
+    private TrackController trackController;
 
 
     void Awake()
@@ -50,6 +51,9 @@ public class PlayerController : MonoBehaviour
         resetToCpRequested = false;
         ship = GameObject.FindGameObjectWithTag("Ship");
         shipRBody = ship.GetComponent<Rigidbody2D>();
+        trackController = GameObject.FindGameObjectWithTag("Track")
+                .GetComponent<TrackController>();
+
 
         if (m_PlayerInput == null)
         {
@@ -201,5 +205,11 @@ public class PlayerController : MonoBehaviour
     public void Shoot()
     {
         // Debug.Log("Ampuu");
+    }
+
+
+    public void OnPause()
+    {
+        trackController.Pause();
     }
 }

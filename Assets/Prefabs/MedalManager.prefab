@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &39295518829451896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 39295518829451898}
+  - component: {fileID: 39295518829451897}
+  m_Layer: 0
+  m_Name: MedalManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &39295518829451898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39295518829451896}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &39295518829451897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39295518829451896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c10dd1ac16891e59a8ee2686960cfb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: {fileID: 21300000, guid: 612469b943e5ba6fb9b38883fe0e9c2b, type: 3}
+  silver: {fileID: 21300000, guid: 252866b94f530973eb28bbe4e1dd883b, type: 3}
+  bronze: {fileID: 21300000, guid: 1b6e98bbf421a3eab8dbbd8dc7926f6a, type: 3}
+  noMedals: {fileID: 21300000, guid: d7feeb25f07286c2ca6fc5922b786fe3, type: 3}

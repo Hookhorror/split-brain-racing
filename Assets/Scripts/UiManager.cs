@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class UiManager : MonoBehaviour
     public Transform playerInfoBox;
     public GameObject countdown;
     public Animator animator;
+    public TrackController trackController;
 
 
     private void Awake()
@@ -21,6 +23,13 @@ public class UiManager : MonoBehaviour
             Destroy(gameObject);
         }
         countdown.SetActive(false);
+    }
+
+
+    private void Start()
+    {
+        trackController = GameObject.FindGameObjectWithTag("Track")
+                .GetComponent<TrackController>();
     }
 
     public void SetCurrentTime(float time)
@@ -66,5 +75,25 @@ public class UiManager : MonoBehaviour
     private void DisableCountdown()
     {
         countdown.SetActive(false);
+    }
+
+
+    public void BackToTrackSelection()
+    {
+        SceneManager.LoadScene("TrackSelection");
+    }
+
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting");
+        Application.Quit();
+    }
+
+
+    public void ResumeGame()
+    {
+        Debug.Log("Resuming");
+        trackController.Pause();
     }
 }

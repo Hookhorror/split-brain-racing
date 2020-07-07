@@ -29,6 +29,8 @@ public class TrackController : MonoBehaviour
     public AudioManager audioManager;
     bool crashed;
     string trackTag;
+    private bool paused;
+    public GameObject pauseMenuUI;
 
 
     void Start()
@@ -55,6 +57,7 @@ public class TrackController : MonoBehaviour
         // Set record split times to checkpoints
         SetRecordTimeToCheckpoints();
 
+        paused = false;
 
     }
 
@@ -119,6 +122,9 @@ public class TrackController : MonoBehaviour
         {
             return;
         }
+
+        if (paused)
+            return;
 
         CancelInvoke();
         UiManager.Instance.ResetTimes();
@@ -295,6 +301,27 @@ public class TrackController : MonoBehaviour
     private void Debugaa()
     {
         Debug.Log("PLAYERS: " + pim.playerCount);
+    }
+
+
+    public void Pause()
+    {
+        if (!paused)
+        {
+            Debug.Log("PELI PAUSELLE");
+            paused = true;
+            DisablePlayerControls();
+            Time.timeScale = 0f;
+            pauseMenuUI.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("PELI POIS PAUSELTA");
+            paused = false;
+            EnablePlayerControls();
+            Time.timeScale = 1f;
+            pauseMenuUI.SetActive(false);
+        }
     }
 
 
