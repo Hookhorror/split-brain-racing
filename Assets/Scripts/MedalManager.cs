@@ -34,9 +34,10 @@ public class MedalManager : MonoBehaviour
     private void LoadMedalTimes()
     {
         string name = "track1";
-        float[] g = new float[9] { 7, 14, 21, 28, 35, 42, 49, 56, 51 };
-        float[] s = new float[9] { 9, 18, 27, 36, 45, 54, 63, 72, 55 };
-        float[] b = new float[9] { 10, 20, 30, 40, 50, 60, 70, 80, 58 };
+        float[] g = new float[9] { 1.86f, 8.74f, 13.32f, 18.86f, 25.24f, 28.86f, 38.24f, 43.36f, 51.90f };
+        float[] s = new float[9] { 2.122f, 9.74f, 15.32f, 21.86f, 29.24f, 32.86f, 43.24f, 48.96f, 59.90f };
+        float[] b = new float[9] { 2.80f, 11.70f, 18.65f, 26.05f, 34.07f, 37.73f, 52.35f, 58.21f, 68.79f };
+
         MedalTime track1 = new MedalTime(g, s, b);
         this.medalTimes.Add(name, track1);
     }
@@ -60,6 +61,16 @@ public class MedalManager : MonoBehaviour
             return bronze;
 
         return noMedals;
+    }
+
+
+    public MedalTime GetMedalTimes(string trackTag)
+    {
+        MedalTime mt;
+        if (medalTimes.TryGetValue(trackTag, out mt))
+            return mt;
+
+        return null;
     }
 
 
@@ -123,23 +134,6 @@ public class MedalManager : MonoBehaviour
             return mt.bronzeTimes;
 
         return null;
-    }
-
-
-    /// Tells what medal is the next one to achieve
-    /// 3 = bronze, 2 = silver, 1 = gold, 0 = all medals got
-    public int NextMedalToAchieve(float recordTime, string trackTag)
-    {
-        MedalTime mt;
-        medalTimes.TryGetValue(trackTag, out mt);
-        if (recordTime > mt.bronzeTime)
-            return 3;
-        if (recordTime > mt.silverTime)
-            return 2;
-        if (recordTime > mt.goldTime)
-            return 1;
-
-        return 0;
     }
 
 }

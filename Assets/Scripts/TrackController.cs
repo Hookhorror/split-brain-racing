@@ -31,6 +31,7 @@ public class TrackController : MonoBehaviour
     string trackTag;
     private bool paused;
     public GameObject pauseMenuUI;
+    private MedalTime mt;
 
 
     void Start()
@@ -48,14 +49,14 @@ public class TrackController : MonoBehaviour
         ship = GameObject.FindGameObjectWithTag("Ship");
         checkpoints = GameObject.FindGameObjectWithTag("CheckpointManager").
                 GetComponent<CheckpointManager>().GetCheckpoints();
-
         trackTag = SceneManager.GetActiveScene().name;
+        mt = MedalManager.Instance.GetMedalTimes(trackTag);
 
         startPoint = ship.transform.position;
         Debug.Log("Start Position" + startPoint);
 
         // Set record split times to checkpoints
-        SetRecordTimeToCheckpoints();
+        SetTimesToCheckpoints();
 
         paused = false;
 
@@ -74,35 +75,63 @@ public class TrackController : MonoBehaviour
         UiManager.Instance.ResetTimes();
 
         // Reset checkpoints used status
-        for (int i = 0; i < checkpoints.Length; i++)
-        {
-            checkpoints[i].GetComponent<CheckpointController>().ResetStatus();
-        }
-
         crashed = false;
         gameState = GameState.waitingPlayers;
 
     }
 
 
+    private void ResetCheckpoints()
+    {
+        for (int i = 0; i < checkpoints.Length; i++)
+        {
+            checkpoints[i].GetComponent<CheckpointController>().ResetStatus();
+        }
+        // Make the last checkpoint to use goal line sprites
+        checkpoints[checkpoints.Length - 1].GetComponent<CheckpointController>().MakeGoalLine();
+    }
+
+
     /// Sets checkpoints times of next medal to achieve, or personal record if
     /// gold time is already beaten.
-    private void SetRecordTimeToCheckpoints()
+    private void SetTimesToCheckpoints()
     {
-        float[] recCps = RecordManager.Instance.GetBestRunCheckpoints(trackTag);
-        int nextMedal = MedalManager.Instance.NextMedalToAchieve(recCps[recCps.Length - 1], trackTag);
-        Debug.Log("Next MEdal " + nextMedal);
+        float[] recordCps = RecordManager.Instance.GetBestRunCheckpoints(trackTag);
 
-        if (checkpoints.Length != recCps.Length)
+        float record = recordCps[recordCps.Length - 1];
+        // Check the checkpoint times to put on checkpoints
+        float[] timesToCheckpoints;
+        if (record < mt.goldTime)
+        {
+            timesToCheckpoints = recordCps;
+            Debug.Log("Checkpoints get record times");
+        }
+        else if (record < mt.silverTime)
+        {
+            timesToCheckpoints = mt.goldTimes;
+            Debug.Log("Checkpoints get GOLD times");
+        }
+        else if (record < mt.bronzeTime)
+        {
+            timesToCheckpoints = mt.silverTimes;
+            Debug.Log("Checkpoints get SILVER times");
+        }
+        else
+        {
+            timesToCheckpoints = mt.bronzeTimes;
+            Debug.Log("Checkpoints get BRONZE times");
+        }
+
+        if (checkpoints.Length != timesToCheckpoints.Length)
         {
             Debug.LogError("Number of checkpoints and split times differ");
-            recCps = cpDefaultRecords;
+            timesToCheckpoints = cpDefaultRecords;
         }
 
         for (int i = 0; i < checkpoints.Length; i++)
         {
             checkpoints[i].GetComponent<CheckpointController>().
-                SetTime(recCps[i]);
+                SetTime(timesToCheckpoints[i]);
         }
     }
 
@@ -197,7 +226,7 @@ public class TrackController : MonoBehaviour
 
         // Update checkpoint times if run is a new record
         if (placement == 1)
-            SetRecordTimeToCheckpoints();
+            SetTimesToCheckpoints();
 
     }
 
@@ -221,6 +250,8 @@ public class TrackController : MonoBehaviour
                 {
                     UiManager.Instance.HidePlayerCount();
                     SetPlayerColors();
+                    ResetCheckpoints();
+
                     gameState = GameState.countdown;
                     StartCountdown();
                 }

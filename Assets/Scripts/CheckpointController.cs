@@ -12,6 +12,8 @@ public class CheckpointController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Sprite unused;
     public Sprite used;
+    public Sprite goalLine;
+    public Sprite goalLineUsed;
 
 
     // Start is called before the first frame update
@@ -59,6 +61,14 @@ public class CheckpointController : MonoBehaviour
     public void ResetStatus()
     {
         isUsed = false;
+        spriteRenderer.sprite = unused;
+    }
+
+
+    public void MakeGoalLine()
+    {
+        unused = goalLine;
+        used = goalLineUsed;
         spriteRenderer.sprite = unused;
     }
 

@@ -49,6 +49,8 @@ MonoBehaviour:
   resetPoint: {fileID: 3939743164703625961}
   unused: {fileID: 21300000, guid: 1f1aa947dc9efe8148529d42434ec150, type: 3}
   used: {fileID: 21300000, guid: 33170153e15ce0241a238ce680a88387, type: 3}
+  goalLine: {fileID: 21300000, guid: 2c77b7d8889c028a9ac383408d486476, type: 3}
+  goalLineUsed: {fileID: 21300000, guid: bd153e14ad03a9eed8cbdf61ee2f9643, type: 3}
 --- !u!61 &3939743163263512452
 BoxCollider2D:
   m_ObjectHideFlags: 0
