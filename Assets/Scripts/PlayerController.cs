@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
         // This is in Awake. In start is was not selected quick enough
         // for trackController's calls to SetColor().
         sr = GetComponent<SpriteRenderer>();
+        trackController = GameObject.FindGameObjectWithTag("Track")
+                .GetComponent<TrackController>();
     }
 
 
@@ -51,8 +53,7 @@ public class PlayerController : MonoBehaviour
         resetToCpRequested = false;
         ship = GameObject.FindGameObjectWithTag("Ship");
         shipRBody = ship.GetComponent<Rigidbody2D>();
-        trackController = GameObject.FindGameObjectWithTag("Track")
-                .GetComponent<TrackController>();
+
 
 
         if (m_PlayerInput == null)

@@ -8,6 +8,7 @@ public class ShipController : MonoBehaviour
     Vector2 lastCheckpoint;
     Vector2 startPoint;
     private bool resetRequested = false;
+    public Animator animator;
 
     void Start()
     {
@@ -20,6 +21,19 @@ public class ShipController : MonoBehaviour
     {
 
     }
+
+
+    public void Crash()
+    {
+        animator.SetBool("crashed", true);
+    }
+
+
+    public void RecoverFromCrash()
+    {
+        animator.SetBool("crashed", false);
+    }
+
 
 
     void FixedUpdate()

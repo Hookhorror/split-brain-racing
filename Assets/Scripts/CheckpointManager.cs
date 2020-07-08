@@ -6,11 +6,11 @@ using UnityEngine;
 /// Collects checkpoints from it's childs
 public class CheckpointManager : MonoBehaviour
 {
-    private GameObject[] checkpoints;
+    public GameObject[] checkpoints;
 
     void Awake()
     {
-        checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
+        // checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
     }
 
 

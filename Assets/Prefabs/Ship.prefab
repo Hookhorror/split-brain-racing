@@ -157,7 +157,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: -6136029378444575707, guid: d3b3180b7f02802429b139f31d20e2df,
     type: 3}
   m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 1488230726091742609}
+  animator: {fileID: 1636007210}
 --- !u!95 &1636007210
 Animator:
   serializedVersion: 3

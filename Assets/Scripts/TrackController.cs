@@ -22,7 +22,7 @@ public class TrackController : MonoBehaviour
     GameObject[] players;
     private GameObject ship;
     public Color[] playerColors;
-    private int countdownDuration = 1;
+    private int countdownDuration = 3;
     public float goldTime;
     public float silverTime;
     public float bronzeTime;
@@ -32,6 +32,7 @@ public class TrackController : MonoBehaviour
     private bool paused;
     public GameObject pauseMenuUI;
     private MedalTime mt;
+    int medalToChase; // 0 record, 1 gold, 2 silver, 3 bronze
 
 
     void Start()
@@ -50,15 +51,11 @@ public class TrackController : MonoBehaviour
         checkpoints = GameObject.FindGameObjectWithTag("CheckpointManager").
                 GetComponent<CheckpointManager>().GetCheckpoints();
         trackTag = SceneManager.GetActiveScene().name;
+        Debug.Log(trackTag);
         mt = MedalManager.Instance.GetMedalTimes(trackTag);
 
         startPoint = ship.transform.position;
         Debug.Log("Start Position" + startPoint);
-
-        // Set record split times to checkpoints
-        SetTimesToCheckpoints();
-
-        paused = false;
 
     }
 
@@ -66,6 +63,7 @@ public class TrackController : MonoBehaviour
     /// Run specifig stuff that need to reset on track reset
     private void SetUpRunStuff()
     {
+        SetTimesToCheckpoints();
         cpRunTimes = new float[checkpoints.Length];
         cpReached = 0;
 
@@ -76,6 +74,9 @@ public class TrackController : MonoBehaviour
 
         // Reset checkpoints used status
         crashed = false;
+        paused = false;
+        UiManager.Instance.HideResultScreen();
+        UiManager.Instance.SetChasingText(medalToChase);
         gameState = GameState.waitingPlayers;
 
     }
@@ -91,6 +92,7 @@ public class TrackController : MonoBehaviour
         checkpoints[checkpoints.Length - 1].GetComponent<CheckpointController>().MakeGoalLine();
     }
 
+
     ///<summary>
     /// Sets checkpoint times of next medal to achieve, or personal record if
     /// gold time is already beaten.
@@ -98,35 +100,37 @@ public class TrackController : MonoBehaviour
     private void SetTimesToCheckpoints()
     {
         float[] recordCps = RecordManager.Instance.GetBestRunCheckpoints(trackTag);
+        float record;
+        if (recordCps == null || recordCps.Length == 0)
+            record = 99999f;
+        else
+            record = recordCps[recordCps.Length - 1];
 
-        float record = recordCps[recordCps.Length - 1];
         // Check the checkpoint times to put on checkpoints
         float[] timesToCheckpoints;
         if (record < mt.goldTime)
         {
             timesToCheckpoints = recordCps;
+            medalToChase = 0;
             Debug.Log("Checkpoints get record times");
         }
         else if (record < mt.silverTime)
         {
             timesToCheckpoints = mt.goldTimes;
+            medalToChase = 1;
             Debug.Log("Checkpoints get GOLD times");
         }
         else if (record < mt.bronzeTime)
         {
             timesToCheckpoints = mt.silverTimes;
+            medalToChase = 2;
             Debug.Log("Checkpoints get SILVER times");
         }
         else
         {
             timesToCheckpoints = mt.bronzeTimes;
+            medalToChase = 3;
             Debug.Log("Checkpoints get BRONZE times");
-        }
-
-        if (checkpoints.Length != timesToCheckpoints.Length)
-        {
-            Debug.LogError("Number of checkpoints and split times differ");
-            timesToCheckpoints = cpDefaultRecords;
         }
 
         for (int i = 0; i < checkpoints.Length; i++)
@@ -143,6 +147,7 @@ public class TrackController : MonoBehaviour
         crashed = true;
         DisablePlayerControls();
         CancelInvoke();
+        ship.GetComponent<ShipController>().Crash();
         Invoke("RecoverFromCrash", 1);
     }
 
@@ -173,6 +178,7 @@ public class TrackController : MonoBehaviour
         crashed = false;
         if (gameState == GameState.racing)
             EnablePlayerControls();
+        ship.GetComponent<ShipController>().RecoverFromCrash();
         ship.GetComponent<ShipController>().RequestReset();
     }
 
@@ -216,20 +222,18 @@ public class TrackController : MonoBehaviour
         float finalTime = cpRunTimes[cpRunTimes.Length - 1];
         int placement = SaveRecord();
 
-        // Get records
-        // Record[] r = RecordManager.Instance.GetRecords(trackTag);
-        // // Debug.Log("Tag: " + trackTag);
-        // // Debug.Log("Saadun taulukon pituus: " + r.Length);
-        // foreach (var item in r)
-        // {
-        //     Debug.Log("From top list: " + item.finalTime());
-        // }
-
         // Update checkpoint times if run is a new record
         if (placement == 1)
             Debug.Log("NEw RECORD");
 
-        SetTimesToCheckpoints();
+        int medal = 0;
+        if (finalTime < mt.goldTime)
+            medal = 1;
+        else if (finalTime < mt.silverTime)
+            medal = 2;
+        else if (finalTime < mt.bronzeTime)
+            medal = 3;
+        UiManager.Instance.ShowResultScreen(trackTag, placement, medal);
 
     }
 
@@ -256,8 +260,12 @@ public class TrackController : MonoBehaviour
                 UiManager.Instance.SetPlayerCount(pim.playerCount);
                 if (pim.playerCount == 2)
                 {
+                    Debug.Log("Kaksi pelaajaa liittynyt");
+                    Debug.Log("Time scale " + Time.timeScale);
                     UiManager.Instance.HidePlayerCount();
                     SetPlayerColors();
+                    // Pause bugs and leaves time scale to 0 when
+                    // Time.timeScale = 1f;
                     ResetCheckpoints();
 
                     gameState = GameState.countdown;
@@ -350,23 +358,40 @@ public class TrackController : MonoBehaviour
     public void Pause()
     {
         if (!paused)
-        {
-            if (gameState != GameState.racing)
-                return;
-            Debug.Log("PELI PAUSELLE");
-            paused = true;
-            DisablePlayerControls();
-            Time.timeScale = 0f;
-            pauseMenuUI.SetActive(true);
-        }
+            SetPauseOn();
         else
-        {
-            Debug.Log("PELI POIS PAUSELTA");
-            paused = false;
-            EnablePlayerControls();
-            Time.timeScale = 1f;
-            pauseMenuUI.SetActive(false);
-        }
+            SetPauseOff();
+    }
+
+
+    private void SetPauseOn()
+    {
+        if (gameState != GameState.racing)
+            return;
+        Debug.Log("PELI PAUSELLE");
+        paused = true;
+        DisablePlayerControls();
+        Time.timeScale = 0f;
+        pauseMenuUI.SetActive(true);
+    }
+
+
+    private void SetPauseOff()
+    {
+        Debug.Log("PELI POIS PAUSELTA");
+        paused = false;
+        EnablePlayerControls();
+        Time.timeScale = 1f;
+        pauseMenuUI.SetActive(false);
+    }
+
+
+    private void OnDestroy()
+    {
+        // Exit to track selection on pause menu leaves time scale to 0 and
+        // freezes next track.
+        Time.timeScale = 1f;
+        Debug.Log("OnDestroy here");
     }
 
 

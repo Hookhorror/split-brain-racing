@@ -40,6 +40,15 @@ public class MedalManager : MonoBehaviour
 
         MedalTime track1 = new MedalTime(g, s, b);
         this.medalTimes.Add(name, track1);
+
+        string toka = "AntinScene";
+        float[] g2 = new float[3] { 1.86f, 8.74f, 1.32f };
+        float[] s2 = new float[3] { 2.122f, 9.74f, 1.32f };
+        float[] b2 = new float[3] { 2.80f, 11.70f, 1.65f };
+
+        MedalTime AntinScene = new MedalTime(g2, s2, b2);
+        this.medalTimes.Add(toka, AntinScene);
+
     }
 
 
