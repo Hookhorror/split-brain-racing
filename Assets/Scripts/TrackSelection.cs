@@ -29,26 +29,27 @@ public class TrackSelection : MonoBehaviour
 
     public void ShowResults(string trackTag)
     {
-        Record[] records = RecordManager.Instance.GetRecords(trackTag);
-        Debug.Log("Loading records for " + trackTag);
-        if (records == null || records.Length == 0)
-            return;
+        // Record[] records = RecordManager.Instance.GetRecords(trackTag);
+        // Debug.Log("Loading records for " + trackTag);
+        // if (records == null || records.Length == 0)
+        //     return;
 
-        Debug.Log("Records found");
-        highscoreList.SetText("koira");
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < records.Length; i++)
-        {
-            sb.Append(i + 1);
-            sb.Append(". ");
-            sb.Append(records[i].name);
-            sb.Append(" - ");
-            sb.Append(records[i].finalTime());
-            sb.Append("\n");
+        // Debug.Log("Records found");
+        // highscoreList.SetText("koira");
+        // StringBuilder sb = new StringBuilder();
+        // for (int i = 0; i < records.Length; i++)
+        // {
+        //     sb.Append(i + 1);
+        //     sb.Append(". ");
+        //     sb.Append(records[i].name);
+        //     sb.Append(" - ");
+        //     sb.Append(records[i].finalTime());
+        //     sb.Append("\n");
 
-        }
-        highscoreList.SetText(sb.ToString());
-        highscoreList.color = Color.cyan;
+        // }
+        // highscoreList.color = Color.cyan;
+
+        highscoreList.SetText(RecordManager.Instance.TopResultAsText(trackTag));
     }
 
 

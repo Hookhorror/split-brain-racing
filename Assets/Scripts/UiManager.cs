@@ -9,6 +9,7 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI splitTime;
     public TextMeshProUGUI playerCount;
     public Transform playerInfoBox;
+    public GameObject Results;
     public GameObject countdown;
     public Animator animator;
     private TrackController trackController;
@@ -55,6 +56,12 @@ public class UiManager : MonoBehaviour
     public void SetPlayerCount(int count)
     {
         playerCount.text = count.ToString();
+    }
+
+
+    public void ShowResultScreen()
+    {
+
     }
 
     public void HidePlayerCount()

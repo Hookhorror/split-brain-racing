@@ -91,9 +91,10 @@ public class TrackController : MonoBehaviour
         checkpoints[checkpoints.Length - 1].GetComponent<CheckpointController>().MakeGoalLine();
     }
 
-
-    /// Sets checkpoints times of next medal to achieve, or personal record if
+    ///<summary>
+    /// Sets checkpoint times of next medal to achieve, or personal record if
     /// gold time is already beaten.
+    ///</summary>
     private void SetTimesToCheckpoints()
     {
         float[] recordCps = RecordManager.Instance.GetBestRunCheckpoints(trackTag);
@@ -213,30 +214,37 @@ public class TrackController : MonoBehaviour
         DisablePlayerControls();
 
         float finalTime = cpRunTimes[cpRunTimes.Length - 1];
-        int placement = SaveOnNewRecordSystem();
+        int placement = SaveRecord();
 
         // Get records
-        Record[] r = RecordManager.Instance.GetRecords(trackTag);
-        Debug.Log("Tag: " + trackTag);
-        Debug.Log("Saadun taulukon pituus: " + r.Length);
-        foreach (var item in r)
-        {
-            Debug.Log("From top list: " + item.finalTime());
-        }
+        // Record[] r = RecordManager.Instance.GetRecords(trackTag);
+        // // Debug.Log("Tag: " + trackTag);
+        // // Debug.Log("Saadun taulukon pituus: " + r.Length);
+        // foreach (var item in r)
+        // {
+        //     Debug.Log("From top list: " + item.finalTime());
+        // }
 
         // Update checkpoint times if run is a new record
         if (placement == 1)
-            SetTimesToCheckpoints();
+            Debug.Log("NEw RECORD");
+
+        SetTimesToCheckpoints();
 
     }
 
 
-    private int SaveOnNewRecordSystem()
+    /// <summary>
+    /// Puts record to top-list if time is good enough. Returns the placement
+    /// on list, or -1 if result id not make to list.
+    /// </summary>
+    private int SaveRecord()
     {
         // New Record system
-        int place = RecordManager.Instance.AddRecord(trackTag, "Testaaja", cpRunTimes);
-        Debug.Log("Sijoitus uudella pistelistalla " + place);
-        return place;
+        int placement = RecordManager.Instance.
+                AddRecord(trackTag, "Testaaja", cpRunTimes);
+        Debug.Log("Sijoitus uudella pistelistalla " + placement);
+        return placement;
     }
 
 
